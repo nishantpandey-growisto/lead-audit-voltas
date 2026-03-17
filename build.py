@@ -278,7 +278,7 @@ hp_cards = "\n".join([
     ),
     card(
         "A social proof section (reviews, customer count, awards) builds purchase confidence for high-AOV products — Voltas has none",
-        None, "Voltas — No social proof section",
+        "screenshots/mockup_social_proof.jpeg", "Proposed Implementation — Voltas Homepage",
         "screenshots/bajaj_social_proof.jpeg", "Bajaj — \"Loved by Millions\" social proof section with star ratings and review cards",
         [
             "The homepage has no social proof section — no customer testimonials, no review carousel, no \"trusted by X customers\" counter, no awards or certifications display",
@@ -347,7 +347,7 @@ col_cards = "\n".join([
     ),
     card(
         "Quick-add buttons on collection cards can increase add-to-cart rate by 10–15% — Voltas has no quick-add",
-        None, "Voltas — No quick-add on cards",
+        "screenshots/mockup_quick_add.jpeg", "Proposed Implementation — Voltas Collection",
         "screenshots/havells_crosssell.jpeg", "Havells — \"You may also like\" cards with ATC buttons",
         [
             "Voltas collection cards have no quick-add button — users must click through to the PDP, then enter a pincode, then click Add to Cart (3+ steps vs 1 step for quick-add)",
@@ -401,7 +401,7 @@ pdp_cards = "\n".join([
     ),
     card(
         "An EMI/installment calculator on the PDP can increase conversion by 15–20% for high-AOV products — Voltas has no EMI display",
-        None, "Voltas — No EMI calculator (₹32,000 product)",
+        "screenshots/mockup_emi_calc.jpeg", "Proposed Implementation — Voltas PDP",
         "screenshots/bluestar_pdp_pincode_atc.jpeg", "Blue Star — Star Rating + Tonnage selectors + Pincode + ATC + Warranty badges",
         [
             "Voltas sells ACs priced ₹32,000–75,000 — yet the PDP shows no EMI/installment option, no BNPL messaging, and no affordability nudge",
@@ -471,7 +471,7 @@ cart_cards = "\n".join([
     ),
     card(
         "A free shipping threshold progress bar can increase AOV by 8–12% — Voltas cart has no shipping visibility",
-        None, "Voltas — No shipping bar or delivery info in cart",
+        "screenshots/mockup_cart_delivery.jpeg", "Proposed Implementation — Voltas Cart",
         "screenshots/bajaj_testimonials.jpeg", "Bajaj — Customer testimonials and trust-building content throughout purchase flow",
         [
             "The Voltas cart drawer shows \"Shipping, taxes, and discount codes calculated at checkout\" — no shipping cost estimate, no free shipping threshold, no delivery timeline",

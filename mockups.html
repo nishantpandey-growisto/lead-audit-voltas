@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=375, initial-scale=1.0">
+<title>Voltas UI Mockups</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; }
+
+  .mockup {
+    width: 375px;
+    margin: 40px auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .mockup-label {
+    background: #00529B;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ═══ MOCKUP 1: Social Proof Section (HP3) ═══ */
+  #social-proof { padding: 0; }
+  #social-proof .sp-section {
+    padding: 24px 16px;
+    background: linear-gradient(135deg, #f0f7fb 0%, #e8f1f6 100%);
+  }
+  #social-proof .sp-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #social-proof .sp-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00529B;
+    margin-bottom: 4px;
+  }
+  #social-proof .sp-header p {
+    font-size: 12px;
+    color: #666;
+  }
+  #social-proof .sp-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    gap: 8px;
+  }
+  #social-proof .sp-stat {
+    text-align: center;
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 8px;
+    box-shadow: 0 2px 8px rgba(0,82,155,0.08);
+  }
+  #social-proof .sp-stat .num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #00529B;
+    line-height: 1;
+  }
+  #social-proof .sp-stat .label {
+    font-size: 10px;
+    color: #555;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+  #social-proof .sp-reviews {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  #social-proof .sp-review {
+    min-width: 240px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 3px solid #00529B;
+  }
+  #social-proof .sp-review .stars {
+    color: #f5a623;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  #social-proof .sp-review .text {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  #social-proof .sp-review .author {
+    font-size: 11px;
+    color: #888;
+    font-weight: 600;
+  }
+  #social-proof .sp-review .verified {
+    font-size: 10px;
+    color: #00529B;
+    font-weight: 500;
+  }
+  #social-proof .sp-heritage {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  #social-proof .sp-heritage .tata-badge {
+    width: 48px;
+    height: 48px;
+    background: #00529B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+  #social-proof .sp-heritage .heritage-text {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.4;
+  }
+  #social-proof .sp-heritage .heritage-text strong {
+    color: #00529B;
+  }
+
+  /* ═══ MOCKUP 2: Quick-Add on Collection Cards (COL4) ═══ */
+  #quick-add { padding: 0; background: #f8f8f8; }
+  #quick-add .qa-grid {
+    display: flex;
+    gap: 10px;
+    padding: 16px 12px;
+  }
+  #quick-add .qa-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  #quick-add .qa-img {
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(135deg, #e8f1f6 0%, #d5e5ef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  #quick-add .qa-img .ac-icon {
+    font-size: 48px;
+    opacity: 0.3;
+  }
+  #quick-add .qa-img .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #e53e30;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  #quick-add .qa-info {
+    padding: 10px;
+  }
+  #quick-add .qa-info .name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  #quick-add .qa-info .specs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  #quick-add .qa-info .spec-pill {
+    font-size: 9px;
+    background: #f0f7fb;
+    color: #00529B;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  #quick-add .qa-info .price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #00529B;
+  }
+  #quick-add .qa-info .mrp {
+    font-size: 10px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 4px;
+  }
+  #quick-add .qa-info .discount {
+    font-size: 10px;
+    color: #e53e30;
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  #quick-add .qa-info .stars-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 4px 0 8px;
+  }
+  #quick-add .qa-info .stars-row .stars {
+    color: #f5a623;
+    font-size: 11px;
+  }
+  #quick-add .qa-info .stars-row .count {
+    font-size: 10px;
+    color: #888;
+  }
+  #quick-add .qa-btn {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 0 10px 10px;
+    background: #00529B;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+  }
+  #quick-add .qa-btn-outline {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 0 10px 10px;
+    background: #fff;
+    color: #00529B;
+    border: 1.5px solid #00529B;
+    border-radius: 6px;
+    padding: 7px;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* ═══ MOCKUP 3: EMI Calculator (PDP3) ═══ */
+  #emi-calc { padding: 0; }
+  #emi-calc .emi-section {
+    padding: 16px;
+    background: #fff;
+  }
+  #emi-calc .price-row {
+    margin-bottom: 12px;
+  }
+  #emi-calc .price-row .offer-price {
+    font-size: 26px;
+    font-weight: 800;
+    color: #222;
+  }
+  #emi-calc .price-row .mrp {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 8px;
+  }
+  #emi-calc .price-row .discount-tag {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  #emi-calc .emi-box {
+    background: linear-gradient(135deg, #f0f7fb 0%, #e8f1f6 100%);
+    border: 1px solid #c5dce8;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  #emi-calc .emi-box .emi-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #00529B;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #emi-calc .emi-box .emi-title .icon {
+    width: 20px;
+    height: 20px;
+    background: #00529B;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #emi-calc .emi-options {
+    display: flex;
+    gap: 8px;
+  }
+  #emi-calc .emi-option {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  #emi-calc .emi-option.selected {
+    border-color: #00529B;
+    box-shadow: 0 0 0 1px #00529B;
+  }
+  #emi-calc .emi-option .months {
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 2px;
+  }
+  #emi-calc .emi-option .amount {
+    font-size: 15px;
+    font-weight: 800;
+    color: #00529B;
+  }
+  #emi-calc .emi-option .interest {
+    font-size: 9px;
+    color: #2e7d32;
+    font-weight: 600;
+  }
+  #emi-calc .bnpl-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  #emi-calc .bnpl-row .simpl-logo {
+    background: #6c3ec1;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  #emi-calc .bnpl-row .bnpl-text {
+    font-size: 12px;
+    color: #333;
+  }
+  #emi-calc .bnpl-row .bnpl-text strong {
+    color: #6c3ec1;
+  }
+  #emi-calc .bank-logos {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 4px;
+    padding: 0 14px;
+  }
+  #emi-calc .bank-logo {
+    font-size: 10px;
+    font-weight: 700;
+    color: #666;
+    padding: 4px 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  /* ═══ MOCKUP 4: Cart Delivery Bar (CART2) ═══ */
+  #cart-delivery { padding: 0; }
+  #cart-delivery .cd-section {
+    padding: 16px;
+    background: #fff;
+  }
+  #cart-delivery .cd-header {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #cart-delivery .cd-header .items {
+    font-size: 12px;
+    color: #666;
+    font-weight: 400;
+  }
+  #cart-delivery .free-ship-bar {
+    background: #f0f7fb;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  #cart-delivery .free-ship-bar .bar-text {
+    font-size: 12px;
+    color: #00529B;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #cart-delivery .free-ship-bar .bar-text .check-icon {
+    width: 18px;
+    height: 18px;
+    background: #2e7d32;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #cart-delivery .progress-track {
+    height: 6px;
+    background: #d5e5ef;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  #cart-delivery .progress-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #00529B, #0077cc);
+    border-radius: 3px;
+  }
+  #cart-delivery .delivery-info {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  #cart-delivery .delivery-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+  #cart-delivery .delivery-card .dc-icon {
+    width: 32px;
+    height: 32px;
+    background: #e8f5e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  #cart-delivery .delivery-card .dc-text {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.4;
+  }
+  #cart-delivery .delivery-card .dc-text strong {
+    color: #00529B;
+    display: block;
+    font-size: 12px;
+  }
+  #cart-delivery .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+  }
+  #cart-delivery .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: #666;
+    font-weight: 500;
+  }
+  #cart-delivery .trust-item .t-icon {
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ MOCKUP 1: Social Proof (HP3) ═══ -->
+<div class="mockup" id="social-proof">
+  <div class="mockup-label">Proposed Implementation — Voltas Homepage</div>
+  <div class="sp-section">
+    <div class="sp-header">
+      <h3>Trusted by Millions of Indian Homes</h3>
+      <p>India's #1 AC Brand — A Tata Enterprise</p>
+    </div>
+    <div class="sp-stats">
+      <div class="sp-stat">
+        <div class="num">10M+</div>
+        <div class="label">Happy Customers</div>
+      </div>
+      <div class="sp-stat">
+        <div class="num">4.5</div>
+        <div class="label">Avg. Rating</div>
+      </div>
+      <div class="sp-stat">
+        <div class="num">70+</div>
+        <div class="label">Years of Trust</div>
+      </div>
+      <div class="sp-stat">
+        <div class="num">20K+</div>
+        <div class="label">Service Centers</div>
+      </div>
+    </div>
+    <div class="sp-reviews">
+      <div class="sp-review">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text">"Best AC I've bought in 10 years. Silent operation, cools the room in minutes. Voltas service team installed it within 24 hours."</div>
+        <div class="author">Rajesh K. &mdash; Mumbai</div>
+        <div class="verified">&#10003; Verified Purchase</div>
+      </div>
+      <div class="sp-review">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text">"Upgraded from a 3-star to 5-star inverter. My electricity bill dropped by 40%. Worth every rupee."</div>
+        <div class="author">Priya S. &mdash; Bangalore</div>
+        <div class="verified">&#10003; Verified Purchase</div>
+      </div>
+    </div>
+    <div class="sp-heritage">
+      <div class="tata-badge">TATA</div>
+      <div class="heritage-text">
+        <strong>A Tata Enterprise</strong><br>
+        Backed by 70+ years of engineering excellence and India's most trusted brand.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MOCKUP 2: Quick-Add on Collection (COL4) ═══ -->
+<div class="mockup" id="quick-add">
+  <div class="mockup-label">Proposed Implementation — Voltas Collection Page</div>
+  <div class="qa-grid">
+    <div class="qa-card">
+      <div class="qa-img">
+        <div class="ac-icon">&#10052;</div>
+        <div class="badge">20% OFF</div>
+      </div>
+      <div class="qa-info">
+        <div class="name">Vectra Emerald Split AC</div>
+        <div class="specs">
+          <span class="spec-pill">1.5 Ton</span>
+          <span class="spec-pill">3 Star</span>
+        </div>
+        <div class="stars-row">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="count">(142)</span>
+        </div>
+        <div>
+          <span class="price">&#8377;32,990</span>
+          <span class="mrp">&#8377;40,990</span>
+        </div>
+      </div>
+      <button class="qa-btn">Quick Add &#10010;</button>
+      <button class="qa-btn-outline">&#9878; Compare</button>
+    </div>
+    <div class="qa-card">
+      <div class="qa-img">
+        <div class="ac-icon">&#10052;</div>
+        <div class="badge">BESTSELLER</div>
+      </div>
+      <div class="qa-info">
+        <div class="name">Vectra Zephyr Gold</div>
+        <div class="specs">
+          <span class="spec-pill">1.5 Ton</span>
+          <span class="spec-pill">5 Star</span>
+        </div>
+        <div class="stars-row">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="count">(287)</span>
+        </div>
+        <div>
+          <span class="price">&#8377;45,990</span>
+          <span class="mrp">&#8377;54,990</span>
+        </div>
+      </div>
+      <button class="qa-btn">Quick Add &#10010;</button>
+      <button class="qa-btn-outline">&#9878; Compare</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MOCKUP 3: EMI Calculator (PDP3) ═══ -->
+<div class="mockup" id="emi-calc">
+  <div class="mockup-label">Proposed Implementation — Voltas PDP</div>
+  <div class="emi-section">
+    <div class="price-row">
+      <span class="offer-price">&#8377;32,990</span>
+      <span class="mrp">&#8377;40,990</span>
+      <span class="discount-tag">20% OFF</span>
+    </div>
+    <div class="emi-box">
+      <div class="emi-title">
+        <span class="icon">&#8377;</span>
+        No-Cost EMI Options
+      </div>
+      <div class="emi-options">
+        <div class="emi-option">
+          <div class="months">3 months</div>
+          <div class="amount">&#8377;10,997</div>
+          <div class="interest">0% interest</div>
+        </div>
+        <div class="emi-option selected">
+          <div class="months">6 months</div>
+          <div class="amount">&#8377;5,498</div>
+          <div class="interest">0% interest</div>
+        </div>
+        <div class="emi-option">
+          <div class="months">12 months</div>
+          <div class="amount">&#8377;2,749</div>
+          <div class="interest">0% interest</div>
+        </div>
+      </div>
+    </div>
+    <div class="bnpl-row">
+      <span class="simpl-logo">Simpl</span>
+      <span class="bnpl-text">Pay in <strong>3 interest-free</strong> installments of <strong>&#8377;10,997</strong></span>
+    </div>
+    <div class="bank-logos">
+      <span class="bank-logo">HDFC</span>
+      <span class="bank-logo">ICICI</span>
+      <span class="bank-logo">SBI</span>
+      <span class="bank-logo">Axis</span>
+      <span class="bank-logo">Kotak</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MOCKUP 4: Cart Delivery Bar (CART2) ═══ -->
+<div class="mockup" id="cart-delivery">
+  <div class="mockup-label">Proposed Implementation — Voltas Cart</div>
+  <div class="cd-section">
+    <div class="cd-header">
+      Your Cart
+      <span class="items">1 item</span>
+    </div>
+    <div class="free-ship-bar">
+      <div class="bar-text">
+        <span class="check-icon">&#10003;</span>
+        Free Shipping &amp; Installation Included!
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+    <div class="delivery-info">
+      <div class="delivery-card">
+        <div class="dc-icon">&#128666;</div>
+        <div class="dc-text">
+          <strong>Free Delivery</strong>
+          Est. Mar 22 – 25
+        </div>
+      </div>
+      <div class="delivery-card">
+        <div class="dc-icon">&#128295;</div>
+        <div class="dc-text">
+          <strong>Free Installation</strong>
+          Within 48 hrs of delivery
+        </div>
+      </div>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><span class="t-icon">&#128274;</span> Secure Payment</div>
+      <div class="trust-item"><span class="t-icon">&#128179;</span> Visa / UPI / RuPay</div>
+      <div class="trust-item"><span class="t-icon">&#9989;</span> Tata Guaranteed</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
