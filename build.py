@@ -247,12 +247,12 @@ hp_cards = "\n".join([
     card(
         "Trust badges and USP icons on the homepage can increase visitor confidence by 30–40% — Voltas has no trust/USP section below the hero",
         "screenshots/hp_products_client.jpeg", "Voltas — Homepage (no trust section)",
-        "screenshots/bajaj_social_proof.jpeg", "Bajaj — \"Loved by Millions\" social proof section",
+        "screenshots/crompton_pdp_colors.jpeg", "Crompton — Trust icons: Buy In Store, Warranty, Service, Top Rated",
         [
             "The Voltas homepage goes directly from the hero carousel to \"Best Sellers\" product grid — there is no trust-building section (USPs, warranty badges, Tata guarantee, delivery promises)",
             "For high-AOV appliances (₹30K–75K), trust signals are critical in the first scroll — customers need reassurance before browsing products",
-            "Bajaj prominently displays a \"Loved by Millions of Consumers\" section with star ratings and customer review cards — Voltas's brand heritage (Tata Group, India's #1 AC brand) is completely absent from the homepage",
-            "No social proof section (customer count, awards, years of service) exists anywhere on the homepage",
+            "Crompton displays clear trust icons below their product info: \"Buy In Store Or Online\", \"Service And Installation\", \"Product Warranty\", \"Top Rated Products\" — these convert browsers into buyers by reducing perceived risk",
+            "Voltas's brand heritage (Tata Group, India's #1 AC brand) is completely absent from the homepage — no trust badges, no warranty icons, no service promise",
         ],
         [
             "Add a trust/USP bar below the hero with 4–5 icons: \"Tata Group Company\", \"India's #1 AC Brand\", \"Free Installation\", \"10-Year Warranty\", \"Pan-India Service Network\"",
@@ -279,11 +279,11 @@ hp_cards = "\n".join([
     card(
         "A social proof section (reviews, customer count, awards) builds purchase confidence for high-AOV products — Voltas has none",
         None, "Voltas — No social proof section",
-        "screenshots/crompton_pdp_colors.jpeg", "Crompton — Trust icons: Buy In Store, Warranty, Service, Top Rated",
+        "screenshots/bajaj_social_proof.jpeg", "Bajaj — \"Loved by Millions\" social proof section with star ratings and review cards",
         [
             "The homepage has no social proof section — no customer testimonials, no review carousel, no \"trusted by X customers\" counter, no awards or certifications display",
             "For ₹30K–75K purchases, buyers actively seek validation — Voltas being a Tata Group brand is a massive trust asset that is completely underleveraged on the website",
-            "Crompton displays clear trust icons below their product info: \"Buy In Store Or Online\", \"Service And Installation\", \"Product Warranty\", \"Top Rated Products\" — these convert browsers into buyers by reducing perceived risk",
+            "Bajaj prominently displays a \"Loved by Millions of Consumers\" section with star ratings and customer review cards — this type of social proof builds purchase confidence for high-AOV appliances",
         ],
         [
             "Add a \"Why Choose Voltas\" section with: Tata Group heritage, pan-India service network reach, customer satisfaction stats, and industry awards",
@@ -472,11 +472,12 @@ cart_cards = "\n".join([
     card(
         "A free shipping threshold progress bar can increase AOV by 8–12% — Voltas cart has no shipping visibility",
         None, "Voltas — No shipping bar or delivery info in cart",
-        "screenshots/bajaj_collection.jpeg", "Bajaj — Collection with Compare toggle, Filter &amp; Sort, clear grid layout",
+        "screenshots/bajaj_testimonials.jpeg", "Bajaj — Customer testimonials and trust-building content throughout purchase flow",
         [
             "The Voltas cart drawer shows \"Shipping, taxes, and discount codes calculated at checkout\" — no shipping cost estimate, no free shipping threshold, no delivery timeline",
             "For ₹32,000+ appliance purchases, shipping cost uncertainty is less of an issue than delivery timeline uncertainty — when will it arrive? Is installation included?",
             "No free installation badge or delivery date is shown in the cart despite the PDP having a pincode checker with serviceability info — this context is lost in the transition to cart",
+            "Competitors like Bajaj maintain confidence-building messaging throughout their purchase flow — Voltas drops all reassurance once the user reaches the cart",
         ],
         [
             "Add a delivery timeline and free installation confirmation in the cart: \"Free Installation Included · Estimated delivery: [date range]\"",
@@ -487,11 +488,12 @@ cart_cards = "\n".join([
     card(
         "Payment trust icons (Visa, Mastercard, UPI, RuPay) near checkout reduce payment anxiety — Voltas cart has none",
         "screenshots/cart_drawer_client.jpeg", "Voltas — Cart checkout area (no trust icons)",
-        "screenshots/crompton_explore_range.jpeg", "Crompton — Product cards with Compare, color swatches, category navigation",
+        "screenshots/bajaj_reviews.jpeg", "Bajaj — Customer reviews and trust elements reinforcing purchase confidence",
         [
             "The Voltas cart drawer checkout area shows only: subtotal, shipping note, policy checkbox, and a greyed-out checkout button — no payment method icons, no security badges, no trust signals",
             "For a ₹32,000+ online transaction, payment trust is critical — buyers need to see familiar payment logos (Visa, Mastercard, UPI, RuPay, Net Banking) before clicking checkout",
-            "The policy checkbox requirement adds friction — checkout is disabled until the box is checked, and the text links to a policies page that could cause the user to leave the cart",
+            "Competitors like Bajaj prominently display customer reviews and trust-reinforcing elements throughout their purchase flow — Voltas's cart area is entirely transactional with zero trust signals",
+            "The policy checkbox requirement adds further friction — checkout is disabled until the box is checked, and the text links to a policies page that could cause the user to leave the cart",
         ],
         [
             "Add a row of payment method icons below the checkout button: Visa, Mastercard, RuPay, UPI, Net Banking + \"100% Secure Payment\" badge with lock icon",
