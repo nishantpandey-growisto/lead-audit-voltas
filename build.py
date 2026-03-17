@@ -247,11 +247,11 @@ hp_cards = "\n".join([
     card(
         "Trust badges and USP icons on the homepage can increase visitor confidence by 30–40% — Voltas has no trust/USP section below the hero",
         "screenshots/hp_products_client.jpeg", "Voltas — Homepage (no trust section)",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Key Features + Trust",
+        "screenshots/bajaj_social_proof.jpeg", "Bajaj — \"Loved by Millions\" social proof section",
         [
             "The Voltas homepage goes directly from the hero carousel to \"Best Sellers\" product grid — there is no trust-building section (USPs, warranty badges, Tata guarantee, delivery promises)",
             "For high-AOV appliances (₹30K–75K), trust signals are critical in the first scroll — customers need reassurance before browsing products",
-            "Competitor Havells prominently displays key feature icons and installation badges — Voltas's brand heritage (Tata Group, India's #1 AC brand) is completely absent from the homepage",
+            "Bajaj prominently displays a \"Loved by Millions of Consumers\" section with star ratings and customer review cards — Voltas's brand heritage (Tata Group, India's #1 AC brand) is completely absent from the homepage",
             "No social proof section (customer count, awards, years of service) exists anywhere on the homepage",
         ],
         [
@@ -263,12 +263,12 @@ hp_cards = "\n".join([
     card(
         "Star ratings on product cards increase click-through by 15–25% — Voltas product cards show no ratings",
         "screenshots/hp_products_client.jpeg", "Voltas — Best Sellers (no ratings)",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Product Cards with Features",
+        "screenshots/bluestar_product_cards.jpeg", "Blue Star — Product cards with star ratings, tonnage & Compare",
         [
             "Voltas Best Seller product cards show only: product image, technical model name, MRP, offer price, and savings — no star ratings or review counts",
             "Judge.me reviews app is installed but reviews are not surfaced on product cards — they only appear on PDPs (if at all)",
             "Product titles are excessively long and technical: \"VOLTAS SPLIT AIR CONDITIONER, 1.5 TON, 3 STAR - 183INV VECTRA ZEPHYR GOLD\" — this is a SKU name, not a customer-friendly title",
-            "Competitor product cards in the electronics space show key specs (tonnage, star rating, key feature) as structured badges rather than in the title",
+            "Blue Star product cards show series name, starting price, tonnage options (1 TON / 1.5 TON), BEE star rating badges, Compare button, and Explore CTA — far richer than Voltas's minimal cards",
         ],
         [
             "Enable Judge.me star ratings on collection/homepage product cards — show average rating + review count below the product title",
@@ -279,11 +279,11 @@ hp_cards = "\n".join([
     card(
         "A social proof section (reviews, customer count, awards) builds purchase confidence for high-AOV products — Voltas has none",
         None, "Voltas — No social proof section",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — Installation + Offers Section",
+        "screenshots/crompton_pdp_colors.jpeg", "Crompton — Trust icons: Buy In Store, Warranty, Service, Top Rated",
         [
             "The homepage has no social proof section — no customer testimonials, no review carousel, no \"trusted by X customers\" counter, no awards or certifications display",
             "For ₹30K–75K purchases, buyers actively seek validation — Voltas being a Tata Group brand is a massive trust asset that is completely underleveraged on the website",
-            "Havells prominently displays free installation badges, applicable offers, and loyalty token earnings — these convert browsers into buyers by reducing perceived risk",
+            "Crompton displays clear trust icons below their product info: \"Buy In Store Or Online\", \"Service And Installation\", \"Product Warranty\", \"Top Rated Products\" — these convert browsers into buyers by reducing perceived risk",
         ],
         [
             "Add a \"Why Choose Voltas\" section with: Tata Group heritage, pan-India service network reach, customer satisfaction stats, and industry awards",
@@ -300,10 +300,11 @@ col_cards = "\n".join([
     card(
         "Key spec icons on collection cards help buyers compare at a glance — Voltas shows only images and model codes",
         "screenshots/col_cards_client.jpeg", "Voltas — AC Collection (no spec badges)",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Product Cards with Key Specs",
+        "screenshots/daikin_product_cards.jpeg", "Daikin — Product cards with Star Rating, Capacity, Technology specs + Compare",
         [
             "Voltas collection cards show: product image, full technical model name (ALL CAPS), MRP, offer price, savings, and an \"Add to compare\" link — but no structured spec badges for tonnage, star rating, or key features",
             "For AC purchases, buyers need to quickly compare: tonnage (1/1.5/2 ton), energy rating (3/4/5 star), and key feature (inverter/fixed speed) — these should be scannable badges, not buried in the title",
+            "Daikin product cards display structured specs (Star Rating, Capacity, Technology, Compressor type) as scannable rows + a Compare button — making quick comparison effortless",
             "The \"Add to compare\" feature exists (good) but spec badges would reduce the need for comparison by making key differences visible at the card level",
         ],
         [
@@ -315,28 +316,28 @@ col_cards = "\n".join([
     card(
         "Advanced category filters with spec-based facets increase product discovery by 25–40% — Voltas has basic filter only",
         "screenshots/col_titles_client.jpeg", "Voltas — Basic Filter + Sort",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — Category Navigation with Specs",
+        "screenshots/daikin_filters.jpeg", "Daikin — AC Finder tool with Room Size, Space Type, Roof Condition filters",
         [
             "Voltas collection page has a simple \"Filter\" button and \"Best selling\" sort dropdown — opening the filter reveals basic options but lacks spec-based facets (tonnage, star rating, price range, features)",
             "For a catalog with 50+ AC models, spec-based filtering is essential — buyers typically know their tonnage requirement and budget range before browsing",
-            "Boost Commerce search app is installed but the filter UI doesn't leverage its advanced faceting capabilities",
+            "Daikin goes beyond basic filters with an interactive AC Finder tool: Room Size, Space Type, Roof Condition — guiding buyers to the right product even if they don't know the tonnage",
             "The filter UX on mobile requires a full-page overlay — no sticky filter pills or quick-filter chips visible during browsing",
         ],
         [
             "Configure Boost Commerce filters with electronics-specific facets: Tonnage (1/1.5/2 Ton), Star Rating (3/4/5 Star), Price Range (₹25K-35K, ₹35K-50K, ₹50K+), Type (Split/Window), Features (Inverter, Wi-Fi, etc.)",
-            "Add sticky filter chips above the product grid for the most-used filters (tonnage and star rating) — allow one-tap filtering without opening the full filter panel",
+            "Consider adding a guided \"AC Finder\" quiz similar to Daikin — this dramatically improves conversion for buyers who don't know specs but know their room/requirements",
         ],
         "Standard — 9/10 top electronics stores have advanced spec-based filters",
     ),
     card(
         "Excessively long product titles reduce scannability and mobile usability — Voltas titles are 60–80 characters of model codes",
         "screenshots/col_titles_client.jpeg", "Voltas — Long Technical Titles",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Clean Product Names",
+        "screenshots/bluestar_collection.jpeg", "Blue Star — Clean series names with visual hierarchy",
         [
             "Voltas product titles on collection cards read like database entries: \"VOLTAS SPLIT AIR CONDITIONER, 2 TON, 3 STAR - 243INV VECTRA ELEGANT\" — 70+ characters of all-caps technical jargon",
             "On mobile (375px), these titles wrap to 5–6 lines, pushing pricing and CTAs below the fold and making the grid feel cluttered",
             "The model code (243INV) is meaningless to consumers — it should be metadata, not the headline",
-            "Havells uses concise, readable titles: \"Stunnair Split AC 1.5 - 5 Star\" (30 characters) — all key specs are communicated in a scannable format",
+            "Blue Star uses clean, structured naming: \"G SMART WI-FI SERIES | INVERTER AC\" — series name first, type second — with tonnage and star rating as separate visual badges below",
         ],
         [
             "Restructure product titles to: \"[Series Name] [Type] — [Tonnage], [Star Rating]\" format. Example: \"Vectra Emerald Split AC — 1 Ton, 3 Star\"",
@@ -347,12 +348,12 @@ col_cards = "\n".join([
     card(
         "Quick-add buttons on collection cards can increase add-to-cart rate by 10–15% — Voltas has no quick-add",
         None, "Voltas — No quick-add on cards",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Add to Cart on Cards",
+        "screenshots/havells_crosssell.jpeg", "Havells — \"You may also like\" cards with ATC buttons",
         [
             "Voltas collection cards have no quick-add button — users must click through to the PDP, then enter a pincode, then click Add to Cart (3+ steps vs 1 step for quick-add)",
             "The \"Add to compare\" button exists on cards but the more valuable \"Add to Cart\" / \"Quick View\" action is missing",
             "For ACs where the primary variant is tonnage (and variants aren't color/size swatches), a quick-add with variant selection popup would significantly streamline the purchase flow",
-            "Havells shows \"Add to Cart\" and \"View Details\" buttons directly on collection cards — enabling impulse additions",
+            "Havells shows \"Add to Cart\" buttons directly on product recommendation cards — enabling impulse additions with minimal friction",
         ],
         [
             "Enable Impulse theme's built-in quick-add or quick-view feature — display a \"Quick View\" popup with variant selection and ATC on collection cards",
@@ -369,12 +370,12 @@ pdp_cards = "\n".join([
     card(
         "Trust badges near the Add to Cart button increase conversion by 5–10% — Voltas PDP has no trust indicators near ATC",
         "screenshots/pdp_pincode_client.jpeg", "Voltas — PDP ATC area (no trust badges)",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — Installation Badge + Offers near ATC",
+        "screenshots/havells_pdp_installation.jpeg", "Havells — Free Installation badge + Loyalty Offers + Pincode check",
         [
             "The Voltas PDP ATC area shows: pincode checker, a greyed-out ATC button (until pincode validated), and \"Add to Compare\" — but zero trust badges",
             "No warranty badge, no free installation promise, no secure payment icons, no Tata guarantee — for a ₹32,000+ purchase, this is a critical trust gap",
             "The text below ATC reads \"Order once Invoiced cannot be cancelled\" and \"Refund will be credited within 14 working days\" — these are negative/restrictive messages that reduce purchase confidence instead of building it",
-            "Havells shows \"Free Installation has been added\" badge with a wrench icon + \"Applicable Offers\" section with loyalty token earnings — these convert hesitant buyers",
+            "Havells shows a \"Free Installation\" badge with wrench icon, applicable offers with loyalty token earnings, and a non-blocking pincode checker — all building trust without blocking the purchase flow",
         ],
         [
             "Add 3–4 trust badges near ATC: \"Free Installation\", \"10-Year Compressor Warranty\", \"Tata Group Company\", \"Secure Payment\" — use icon + short text format",
@@ -385,12 +386,12 @@ pdp_cards = "\n".join([
     card(
         "Visual spec icons help buyers evaluate products 40% faster than plain text — Voltas specs are a plain bullet list",
         "screenshots/pdp_specs_client.jpeg", "Voltas — Plain text spec bullets",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Structured Key Features",
+        "screenshots/havells_pdp_features.jpeg", "Havells — Structured Key Features with price, dual ATC/Buy Now CTAs",
         [
             "Voltas product specs are presented as a plain unformatted bullet list: 20+ items including model number, tonnage, star rating, technical features, and manufacturer details — all in the same visual hierarchy",
             "Critical purchase-decision specs (tonnage, star rating, cooling capacity) are mixed with secondary technical details (PCB box material, hydrophilic coating) — buyers can't quickly find what matters",
             "No icon-based spec display, no tabbed organization (Specs / Description / Reviews), no comparison-friendly structured data",
-            "Havells uses a \"Key Features\" heading with curated top-10 features, plus separate collapsible sections for Technical Specifications, Features, Reviews, and Downloads",
+            "Havells uses a \"Key Features\" heading with curated features, prominent pricing with MRP strikethrough, and dual CTA buttons (Add to Cart + Buy Now) — clear hierarchy guides the buyer's eye",
         ],
         [
             "Create a visual \"Key Specs\" section with 4–6 icon-based cards above the detailed specs: Tonnage, Star Rating, Cooling Capacity, Special Feature, Warranty, Noise Level",
@@ -401,11 +402,11 @@ pdp_cards = "\n".join([
     card(
         "An EMI/installment calculator on the PDP can increase conversion by 15–20% for high-AOV products — Voltas has no EMI display",
         None, "Voltas — No EMI calculator (₹32,000 product)",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — Price with Offers Section",
+        "screenshots/bluestar_pdp_pincode_atc.jpeg", "Blue Star — Star Rating + Tonnage selectors + Pincode + ATC + Warranty badges",
         [
             "Voltas sells ACs priced ₹32,000–75,000 — yet the PDP shows no EMI/installment option, no BNPL messaging, and no affordability nudge",
             "Simpl (Pay Later) is detected in the tech stack but is not surfaced on the PDP — the payment flexibility message is invisible to the buyer during the product evaluation stage",
-            "For Indian electronics e-commerce, EMI options are a Standard pattern (present on 4/5 top India electronics stores) — missing EMI display at this price point is a significant conversion barrier",
+            "Blue Star's PDP shows price with MRP strikethrough, Star Rating selector, Tonnage selector, Pincode checker, ATC button, and warranty badges (Lifetime Compressor + 5-Year PCB) — a comprehensive purchase decision interface",
             "A simple \"Starting at ₹X/month\" message below the price can reduce perceived cost anxiety by 30–40%",
         ],
         [
@@ -417,11 +418,11 @@ pdp_cards = "\n".join([
     card(
         "Low-contrast CTA buttons reduce visibility and click-through — Voltas ATC button blends into the background",
         "screenshots/pdp_pincode_client.jpeg", "Voltas — Low contrast ATC button",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — High contrast dual CTAs",
+        "screenshots/bluestar_pdp_top.jpeg", "Blue Star — Bold blue ATC button with clear visual hierarchy",
         [
             "The Voltas ATC button uses a thin grey/white outline style that blends into the page background — it doesn't stand out as the primary action",
             "When the pincode hasn't been entered, the ATC appears greyed out (disabled state) — this is correct behavior but the enabled state also lacks visual punch",
-            "Havells uses a dual-CTA approach: white outlined \"Add to Cart\" + red filled \"Buy Now\" in a sticky bottom bar — the high-contrast red immediately draws the eye",
+            "Blue Star uses a prominent blue filled ATC button that spans the full width — immediately visible and clearly the primary action on the page",
             "On mobile, the ATC needs to be the most visually prominent element on the page — Voltas's current styling makes it easy to miss",
         ],
         [
@@ -433,11 +434,11 @@ pdp_cards = "\n".join([
     card(
         "Pincode-gating the ATC button creates friction that can reduce add-to-cart rate by 20–30% — Voltas requires pincode before any cart action",
         "screenshots/pdp_pincode_client.jpeg", "Voltas — ATC disabled until pincode check",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — ATC always enabled, pincode optional",
+        "screenshots/crompton_pdp_top.jpeg", "Crompton — Product info + Buy From Store CTA without pincode gate",
         [
             "Voltas completely disables the Add to Cart button until the user enters a valid pincode — the button is greyed out with no click affordance until serviceability is confirmed",
-            "This creates a 3-step flow: (1) find the pincode field, (2) type 6-digit pincode, (3) click Check, (4) if serviceable, ATC becomes active — vs competitors' 1-step \"Add to Cart\"",
-            "Havells allows immediate ATC with an optional pincode check for delivery details — the buying action is never blocked",
+            "This creates a 3-step flow: (1) find the pincode field, (2) type 6-digit pincode, (3) click Check, (4) if serviceable, ATC becomes active — vs competitors' 1-step CTA",
+            "Crompton allows immediate access to the Buy From Store action without any pincode gate — product info, color swatches, and CTAs are all immediately accessible",
             "The friction is compounded by an exchange offer checkbox that appears after pincode validation — adding yet another decision point before the user can proceed to cart",
         ],
         [
@@ -455,11 +456,11 @@ cart_cards = "\n".join([
     card(
         "Cross-sell recommendations in cart can increase AOV by 10–15% — Voltas cart has zero product suggestions",
         "screenshots/cart_drawer_client.jpeg", "Voltas — Cart drawer (no cross-sell)",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — \"You may also like\" recommendations",
+        "screenshots/havells_crosssell.jpeg", "Havells — \"You may also like\" cross-sell cards with ATC buttons",
         [
             "The Voltas cart drawer shows: product image, name, quantity adjuster, price, GSTIN field, Technician ID field, subtotal, policy checkbox, and checkout button — but absolutely no product recommendations",
             "For appliance purchases, cross-sell opportunities are high-value: AC stabilizer (₹2,000–4,000), installation kit, extended warranty, air purifier, etc.",
-            "The \"Frequently Bought Together\" section exists on the PDP (good) but nothing carries into the cart where the buyer is already committed",
+            "Havells shows a \"You may also like\" section with product cards featuring key specs and Add to Cart buttons — enabling easy accessory additions at the point of commitment",
             "The GSTIN and Technician ID fields in the cart drawer are unusual and add visual clutter for consumer buyers — these should be optional/collapsed or moved to checkout",
         ],
         [
@@ -471,7 +472,7 @@ cart_cards = "\n".join([
     card(
         "A free shipping threshold progress bar can increase AOV by 8–12% — Voltas cart has no shipping visibility",
         None, "Voltas — No shipping bar or delivery info in cart",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — Free Installation Badge",
+        "screenshots/bajaj_collection.jpeg", "Bajaj — Collection with Compare toggle, Filter &amp; Sort, clear grid layout",
         [
             "The Voltas cart drawer shows \"Shipping, taxes, and discount codes calculated at checkout\" — no shipping cost estimate, no free shipping threshold, no delivery timeline",
             "For ₹32,000+ appliance purchases, shipping cost uncertainty is less of an issue than delivery timeline uncertainty — when will it arrive? Is installation included?",
@@ -486,7 +487,7 @@ cart_cards = "\n".join([
     card(
         "Payment trust icons (Visa, Mastercard, UPI, RuPay) near checkout reduce payment anxiety — Voltas cart has none",
         "screenshots/cart_drawer_client.jpeg", "Voltas — Cart checkout area (no trust icons)",
-        "screenshots/havells_features_benchmark.jpeg", "Havells — Secure Checkout Elements",
+        "screenshots/crompton_explore_range.jpeg", "Crompton — Product cards with Compare, color swatches, category navigation",
         [
             "The Voltas cart drawer checkout area shows only: subtotal, shipping note, policy checkbox, and a greyed-out checkout button — no payment method icons, no security badges, no trust signals",
             "For a ₹32,000+ online transaction, payment trust is critical — buyers need to see familiar payment logos (Visa, Mastercard, UPI, RuPay, Net Banking) before clicking checkout",
@@ -501,11 +502,11 @@ cart_cards = "\n".join([
     card(
         "The mandatory policy checkbox before checkout adds an extra step that increases cart abandonment — most stores handle this at checkout",
         "screenshots/cart_drawer_client.jpeg", "Voltas — Policy checkbox blocks checkout",
-        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Direct checkout, no checkbox gate",
+        "screenshots/bluestar_pdp_pincode_atc.jpeg", "Blue Star — Direct ATC + Compare + Warranty badges, no checkbox gate",
         [
             "Voltas requires users to check \"I have read &amp; agree with the policies mentioned on this site\" before the checkout button becomes active — this is the second friction gate after the pincode requirement",
             "The checkout button is visually greyed out and disabled until the checkbox is checked — many mobile users may not understand why checkout isn't working",
-            "Standard Shopify practice is to handle policy acceptance at checkout, not in the cart — this extra step is unusual and adds unnecessary friction",
+            "Blue Star's purchase flow has no such checkbox — buyers select specs, check pincode, and Add to Cart in a clean linear flow with warranty trust badges reinforcing confidence",
             "Combined with the pincode-gated ATC on PDP, a buyer faces 4+ friction steps before reaching checkout: enter pincode → check serviceable → add to cart → check policy box → checkout",
         ],
         [
