@@ -1,0 +1,716 @@
+#!/usr/bin/env python3
+"""Build script: Populates lead_audit_spa_template.html for Voltas.
+
+Data collected: March 17, 2026 — fresh mobile-first UX evaluation at 375×812,
+fresh PSI PageSpeed data, 3-dimension finding selection algorithm.
+Industry: Electronics / Home Appliances
+"""
+
+import re, os
+
+TEMPLATE = "/Users/growisto/Documents/Claude_Code/_cro_audit_system/templates/lead_audit_spa_template.html"
+OUTPUT   = "/Users/growisto/Documents/Claude_Code/_audit_reports/voltas-lead/index.html"
+
+# Read template
+with open(TEMPLATE, "r") as f:
+    html = f.read()
+
+# ── Simple variable replacements ──────────────────────────
+replacements = {
+    "{{CLIENT_NAME}}": "Voltas",
+    "{{CLIENT_URL}}": "voltas.com",
+    "{{REPORT_DATE}}": "March 2026",
+    "{{REPORT_PASSWORD}}": "voltas2026",
+    "{{INDUSTRY_CATEGORY}}": "Electronics &amp; Home Appliances",
+    "{{INDUSTRY_CATEGORY_SHORT}}": "electronics",
+
+    # Section 01 — Audit Overview
+    "{{SEVERITY_CRITICAL_COUNT}}": "5",
+    "{{SEVERITY_IMPORTANT_COUNT}}": "7",
+    "{{SEVERITY_OPPORTUNITY_COUNT}}": "4",
+    "{{FINDING_COUNT_TOTAL}}": "16",
+    "{{COMPETITOR_COUNT}}": "4",
+    "{{APPS_PRESENT_COUNT}}": "14",
+    "{{FINDING_COUNT_HOMEPAGE}}": "3",
+    "{{FINDING_COUNT_COLLECTION}}": "4",
+    "{{FINDING_COUNT_PDP}}": "5",
+    "{{FINDING_COUNT_CART}}": "4",
+
+    # Section 02 — Traffic & Conversion Context
+    "{{PROXY_TIER_NAME}}": "Tier 4: Enterprise",
+    "{{PROXY_TIER_SESSIONS}}": "200K+",
+    "{{PROXY_TIER_NARRATIVE}}": "Voltas is India's largest AC brand by market share with an extensive offline dealer network. With 200+ products listed, Judge.me reviews recently installed, and a strong social presence (~500K Instagram followers), the store signals <strong>Tier 4 (Enterprise)</strong> traffic levels. However, the online D2C channel appears to be a newer initiative — the Shopify store launched on the Impulse theme with significant features still unconfigured.",
+    "{{PROXY_PRODUCT_COUNT}}": "200+",
+    "{{PROXY_REVIEW_COUNT}}": "Limited (Judge.me recently installed)",
+    "{{PROXY_INSTAGRAM}}": "N/A (Tata Group brand — offline-heavy)",
+    "{{PROXY_APP_COUNT}}": "14",
+    "{{PROXY_ESTIMATED_REVENUE}}": "500000000",
+
+    # Funnel benchmarks (Electronics & Tech from Appendix C/D)
+    "{{INDUSTRY_PDP_VIEW_RATE_P25}}": "60.4%",
+    "{{INDUSTRY_PDP_VIEW_RATE}}": "89.6%",
+    "{{INDUSTRY_PDP_VIEW_RATE_P75}}": "115.9%",
+    "{{INDUSTRY_ATC_RATE_P25}}": "6.42%",
+    "{{INDUSTRY_ATC_RATE}}": "11.95%",
+    "{{INDUSTRY_ATC_RATE_P75}}": "20.27%",
+    "{{INDUSTRY_CART_TO_CHECKOUT_P25}}": "22.8%",
+    "{{INDUSTRY_CART_TO_CHECKOUT}}": "29.8%",
+    "{{INDUSTRY_CART_TO_CHECKOUT_P75}}": "40.5%",
+    "{{INDUSTRY_CHECKOUT_COMPLETION_P25}}": "12.3%",
+    "{{INDUSTRY_CHECKOUT_COMPLETION}}": "20.7%",
+    "{{INDUSTRY_CHECKOUT_COMPLETION_P75}}": "32.1%",
+    "{{INDUSTRY_CVR_P25}}": "0.09%",
+    "{{INDUSTRY_CVR_P50}}": "0.15%",
+    "{{INDUSTRY_CVR_P75}}": "0.32%",
+    "{{INDUSTRY_CVR_P50_RAW}}": "0.15",
+
+    # Section 03: Performance & Speed (PSI lab data — March 17, 2026)
+    "{{PS_CLIENT_MOBILE_SCORE}}": "68",
+    "{{PS_CLIENT_MOBILE_CLASS}}": "moderate",
+    "{{PS_CLIENT_MOBILE_VERDICT}}": "Moderate — Voltas scores 68 on Google PageSpeed Insights (mobile). Lab LCP is 1.7s (good) and FCP is 0.7s (excellent). However, CLS is 0.633 — the worst layout shift in the competitive set, causing visible content jumps during page load. Speed Index is 10.6s (poor) and TTI is 26.7s, suggesting heavy third-party script load. Desktop score is notably lower at 54, indicating server-side rendering or resource-loading issues that don't benefit from mobile CDN optimization.",
+
+    # Core Web Vitals (PSI lab data)
+    "{{PS_CLIENT_LCP}}": "1.7s",
+    "{{PS_CLIENT_LCP_CLASS}}": "good",
+    "{{PS_CLIENT_LCP_STATUS}}": "pass",
+    "{{PS_CLIENT_LCP_LABEL}}": "Pass",
+    "{{PS_CLIENT_FCP}}": "0.7s",
+    "{{PS_CLIENT_FCP_CLASS}}": "good",
+    "{{PS_CLIENT_FCP_STATUS}}": "pass",
+    "{{PS_CLIENT_FCP_LABEL}}": "Pass",
+    "{{PS_CLIENT_TBT}}": "60ms",
+    "{{PS_CLIENT_TBT_CLASS}}": "good",
+    "{{PS_CLIENT_TBT_STATUS}}": "pass",
+    "{{PS_CLIENT_TBT_LABEL}}": "Pass",
+    "{{PS_CLIENT_CLS}}": "0.633",
+    "{{PS_CLIENT_CLS_CLASS}}": "poor",
+    "{{PS_CLIENT_CLS_STATUS}}": "fail",
+    "{{PS_CLIENT_CLS_LABEL}}": "Fail",
+    "{{PS_CLIENT_INP}}": "N/A",
+    "{{PS_CLIENT_INP_CLASS}}": "moderate",
+    "{{PS_CLIENT_INP_STATUS}}": "warning",
+    "{{PS_CLIENT_INP_LABEL}}": "No CrUX data",
+
+    "{{CWV_SUMMARY_CLASS}}": "warning",
+    "{{CWV_PASS_ICON}}": "⚠",
+    "{{CWV_PASS_COUNT}}": "3",
+
+    "{{PS_COMBINED_NARRATIVE}}": "Voltas scores 68 on mobile PageSpeed — the best in its competitive set after Crompton (96) and Havells (86). LCP at 1.7s and FCP at 0.7s are both in the green zone, meaning the page renders content quickly. TBT is just 60ms (excellent). However, <strong>CLS at 0.633 is critically poor</strong> — the threshold is 0.1. This means visible content shifts during page load, causing a jarring user experience where elements jump around as images and scripts load. Speed Index at 10.6s and TTI at 26.7s suggest that while initial content appears fast, the page takes a long time to become fully interactive. Desktop score is surprisingly lower at 54 — unusual since desktop typically scores higher. The competition: Crompton leads at 96 mobile, Havells at 86, Blue Star at 77, while Daikin trails at 52. Voltas's main priority should be fixing CLS — reserve image/carousel dimensions, set explicit width/height on hero images, and ensure slideshow transitions don't trigger layout reflow.",
+
+    # Section 05: Technology Assessment
+    "{{TECH_HEALTH_CLASS}}": "warning",
+    "{{TECH_HEALTH_ICON}}": "⚠",
+    "{{TECH_HEALTH_SUMMARY}}": "4 of 6 technology areas are well-configured — 2 areas need attention",
+    "{{TECH_PLATFORM_STATUS}}": "good",
+    "{{TECH_PLATFORM_STATUS_LABEL}}": "Modern Platform",
+    "{{PLATFORM}}": "Shopify",
+    "{{PLATFORM_NOTES}}": "Shopify — auto-scaling, PCI-compliant, 99.99% uptime. Solid platform for a Tata Group brand entering D2C e-commerce with 200+ SKUs across ACs, water heaters, air coolers, and home appliances.",
+    "{{TECH_THEME_STATUS}}": "good",
+    "{{TECH_THEME_STATUS_LABEL}}": "Premium Theme",
+    "{{THEME_NAME}}": "Impulse 7.4.0",
+    "{{THEME_TYPE}}": "Premium Shopify Theme by ARCHETYPE",
+    "{{THEME_VERSION_NOTE}}": "OS 2.0 compatible — Impulse is a well-regarded premium theme with strong conversion features",
+    "{{THEME_FEATURE_NOTE}}": "Impulse has built-in support for sticky ATC, quick-add, and advanced filtering — but many of these features appear to be disabled or unconfigured on the Voltas store.",
+    "{{TECH_CHECKOUT_STATUS}}": "warning",
+    "{{TECH_CHECKOUT_STATUS_LABEL}}": "Friction Points",
+    "{{CHECKOUT_TYPE}}": "Shopify Native + Pincode Gate",
+    "{{CHECKOUT_GUEST_NOTE}}": "Guest checkout: Available",
+    "{{CHECKOUT_EXPRESS_NOTE}}": "Express checkout: Not visible in cart — no GPay/Shop Pay buttons detected",
+    "{{CHECKOUT_FRICTION_NOTE}}": "ATC is disabled until pincode check passes + mandatory policy checkbox before checkout — two friction barriers that compound to reduce conversion",
+    "{{TECH_PAYMENTS_STATUS}}": "good",
+    "{{TECH_PAYMENTS_STATUS_LABEL}}": "Comprehensive",
+    "{{PAYMENT_GATEWAY}}": "Razorpay + Simpl",
+    "{{PAYMENT_METHODS_NOTE}}": "UPI, Cards, Netbanking, Wallets via Razorpay",
+    "{{PAYMENT_COD_NOTE}}": "COD: Not confirmed",
+    "{{PAYMENT_BNPL_NOTE}}": "BNPL: Simpl Pay Later detected",
+    "{{TECH_CDN_STATUS}}": "warning",
+    "{{TECH_CDN_STATUS_LABEL}}": "CLS Issue",
+    "{{CDN_PROVIDER}}": "Shopify CDN (Cloudflare)",
+    "{{CDN_IMAGE_NOTE}}": "Images: Served via Shopify CDN. LCP is excellent at 1.7s but CLS at 0.633 is critically poor — images and carousels shift layout during load",
+    "{{CDN_COMPRESSION_NOTE}}": "Compression: Brotli/Gzip enabled. Heavy third-party script load: CleverTap, FirstHive, Havas pixel, Boost Commerce, privEzi, SmartifyApps — Speed Index 10.6s, TTI 26.7s",
+    "{{CDN_CACHING_NOTE}}": "Browser caching: Standard Shopify headers. Multiple ad/analytics scripts (Havas, FirstHive, CleverTap) plus duplicate Facebook Pixel IDs add overhead",
+    "{{TECH_SECURITY_STATUS}}": "good",
+    "{{TECH_SECURITY_STATUS_LABEL}}": "Secure",
+    "{{SECURITY_SSL_STATUS}}": "SSL/TLS Active",
+    "{{SECURITY_HTTPS_NOTE}}": "HTTPS: All pages secured",
+    "{{SECURITY_PCI_NOTE}}": "PCI DSS: Compliant (via Shopify)",
+    "{{SECURITY_COOKIE_NOTE}}": "Cookie consent: privEzi cookie consent SDK active — good compliance",
+    "{{TECH_NARRATIVE}}": "Voltas runs on Shopify with the premium Impulse 7.4.0 theme by ARCHETYPE — a well-regarded premium theme with strong conversion features. However, many of Impulse's built-in capabilities (sticky ATC, quick-add, advanced filtering) appear to be disabled or unconfigured. The pincode serviceability check gates the Add to Cart button — users cannot add products without first entering a valid pincode, adding significant friction. The checkout flow adds a second friction barrier: a mandatory policy checkbox (\"I have read &amp; agree with the policies\") must be checked before the checkout button becomes active. These two gates — pincode + policy checkbox — compound to reduce conversion. The tech stack is heavy: GTM (GTM-KCPW6GW), GA4 (G-WF54WYTR46), Facebook Pixel (with duplicate Pixel ID error), Clarity, Klaviyo, CleverTap, FirstHive, Havas pixel, Boost Commerce, SmartifyApps, privEzi, and Judge.me. Active JS errors detected: <code>$ is not defined</code> (jQuery dependency missing), <code>Invalid visitorId</code> (CleverTap), <code>TypeError</code> in Boost Commerce script, and duplicate Facebook Pixel ID warning. Payment is handled via Razorpay with Simpl (BNPL) available — a comprehensive payment stack.",
+
+    # Section 06: App Ecosystem
+    "{{APPS_MISSING_COUNT}}": "5",
+    "{{APPS_BENCHMARK_CONTEXT}}": "Voltas has 14 detected apps/scripts covering analytics, reviews, email, payments, and search — but is missing critical conversion-driving categories for high-AOV electronics: EMI calculator, cross-sell/upsell, and cart recovery",
+    "{{APP_STACK_NARRATIVE}}": "Voltas has 14 apps spanning analytics (GTM, GA4, Clarity, Facebook Pixel, FirstHive, CleverTap, Havas), reviews (Judge.me), email (Klaviyo), payments (Razorpay, Simpl), search (Boost Commerce), wishlist (XB Wishlist), and cookie consent (privEzi). The analytics stack is comprehensive — arguably over-instrumented with both FirstHive and CleverTap providing overlapping CDP functionality, plus a Havas media pixel. However, critical revenue-driving categories are missing: no EMI/BNPL calculator on PDPs despite ₹30K–75K AOV products, no cross-sell/upsell app (cart has zero product recommendations), and no cart abandonment recovery app. Judge.me reviews appear recently installed with limited review coverage. The duplicate Facebook Pixel ID error and jQuery dependency errors (<code>$ is not defined</code>) indicate integration issues that should be resolved.",
+
+    # JS nav
+    "{{UX_FINDING_1_SHORT_TITLE}}": "UX & Conversion Findings",
+    "{{UX_FINDING_2_SHORT_TITLE}}": "Collection Page",
+    "{{UX_FINDING_3_SHORT_TITLE}}": "Product Page",
+}
+
+for key, val in replacements.items():
+    html = html.replace(key, val)
+
+# ── Competition table rows (4 competitors — PSI data March 17, 2026) ──
+comp_rows = """<tr class="client-row">
+                                <td>Voltas</td>
+                                <td class="score-cell-moderate">68</td>
+                                <td class="score-cell-moderate">54</td>
+                                <td class="score-cell-good">1.7s</td>
+                                <td class="score-cell-poor">0.633</td>
+                                <td class="score-cell-good">60ms</td>
+                            </tr>
+                            <tr>
+                                <td>Blue Star</td>
+                                <td class="score-cell-good">77</td>
+                                <td class="score-cell-good">88</td>
+                                <td class="score-cell-good">2.0s</td>
+                                <td class="score-cell-good">0.02</td>
+                                <td class="score-cell-good">90ms</td>
+                            </tr>
+                            <tr>
+                                <td>Havells</td>
+                                <td class="score-cell-good">86</td>
+                                <td class="score-cell-good">91</td>
+                                <td class="score-cell-good">1.5s</td>
+                                <td class="score-cell-good">0.01</td>
+                                <td class="score-cell-good">50ms</td>
+                            </tr>
+                            <tr>
+                                <td>Crompton</td>
+                                <td class="score-cell-good">96</td>
+                                <td class="score-cell-good">98</td>
+                                <td class="score-cell-good">0.8s</td>
+                                <td class="score-cell-good">0</td>
+                                <td class="score-cell-good">20ms</td>
+                            </tr>
+                            <tr>
+                                <td>Daikin India</td>
+                                <td class="score-cell-moderate">52</td>
+                                <td class="score-cell-moderate">65</td>
+                                <td class="score-cell-poor">3.5s</td>
+                                <td class="score-cell-good">0.05</td>
+                                <td class="score-cell-poor">800ms</td>
+                            </tr>"""
+html = html.replace("{{PS_COMPETITION_TABLE_ROWS}}", comp_rows)
+
+# ── Finding cards ─────────────────────────────────────────
+
+def card(header, client_img, client_label, bench_img, bench_label, observations, recommendations, benchmark_tag):
+    obs_li = "\n".join(f"                                                    <li>{o}</li>" for o in observations)
+    rec_li = "\n".join(f"                                                    <li>{r}</li>" for r in recommendations)
+    if client_img is None:
+        client_html = f'''<div class="finding-screenshot-missing">
+                                                    <div class="missing-icon">✗</div>
+                                                    <div class="missing-text">Feature not present</div>
+                                                </div>
+                                                <div class="finding-screenshot-label client-label">{client_label}</div>'''
+    else:
+        client_html = f'''<img src="{client_img}" alt="Voltas">
+                                                <div class="finding-screenshot-label client-label">{client_label}</div>'''
+    return f"""<div class="finding-card">
+                                    <div class="finding-card-header">
+                                        {header}
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                {client_html}
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="{bench_img}" alt="{bench_label}">
+                                                <div class="finding-screenshot-label benchmark-label">{bench_label}</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+{obs_li}
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+{rec_li}
+                                                </ul>
+                                                <span class="finding-benchmark-tag">{benchmark_tag}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>"""
+
+# ═══════════════════════════════════════════════════════════
+# HOMEPAGE (3 cards)
+# ═══════════════════════════════════════════════════════════
+hp_cards = "\n".join([
+    card(
+        "Trust badges and USP icons on the homepage can increase visitor confidence by 30–40% — Voltas has no trust/USP section below the hero",
+        "screenshots/hp_products_client.jpeg", "Voltas — Homepage (no trust section)",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Key Features + Trust",
+        [
+            "The Voltas homepage goes directly from the hero carousel to \"Best Sellers\" product grid — there is no trust-building section (USPs, warranty badges, Tata guarantee, delivery promises)",
+            "For high-AOV appliances (₹30K–75K), trust signals are critical in the first scroll — customers need reassurance before browsing products",
+            "Competitor Havells prominently displays key feature icons and installation badges — Voltas's brand heritage (Tata Group, India's #1 AC brand) is completely absent from the homepage",
+            "No social proof section (customer count, awards, years of service) exists anywhere on the homepage",
+        ],
+        [
+            "Add a trust/USP bar below the hero with 4–5 icons: \"Tata Group Company\", \"India's #1 AC Brand\", \"Free Installation\", \"10-Year Warranty\", \"Pan-India Service Network\"",
+            "Add a testimonials/awards section showcasing brand heritage and customer trust metrics",
+        ],
+        "Standard — 9/10 top electronics stores have trust/USP sections on homepage",
+    ),
+    card(
+        "Star ratings on product cards increase click-through by 15–25% — Voltas product cards show no ratings",
+        "screenshots/hp_products_client.jpeg", "Voltas — Best Sellers (no ratings)",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Product Cards with Features",
+        [
+            "Voltas Best Seller product cards show only: product image, technical model name, MRP, offer price, and savings — no star ratings or review counts",
+            "Judge.me reviews app is installed but reviews are not surfaced on product cards — they only appear on PDPs (if at all)",
+            "Product titles are excessively long and technical: \"VOLTAS SPLIT AIR CONDITIONER, 1.5 TON, 3 STAR - 183INV VECTRA ZEPHYR GOLD\" — this is a SKU name, not a customer-friendly title",
+            "Competitor product cards in the electronics space show key specs (tonnage, star rating, key feature) as structured badges rather than in the title",
+        ],
+        [
+            "Enable Judge.me star ratings on collection/homepage product cards — show average rating + review count below the product title",
+            "Rewrite product titles to be customer-friendly: \"Vectra Emerald Split AC — 1 Ton, 3 Star\" instead of the full model code",
+        ],
+        "Standard — 8/10 top electronics stores show star ratings on product cards",
+    ),
+    card(
+        "A social proof section (reviews, customer count, awards) builds purchase confidence for high-AOV products — Voltas has none",
+        None, "Voltas — No social proof section",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — Installation + Offers Section",
+        [
+            "The homepage has no social proof section — no customer testimonials, no review carousel, no \"trusted by X customers\" counter, no awards or certifications display",
+            "For ₹30K–75K purchases, buyers actively seek validation — Voltas being a Tata Group brand is a massive trust asset that is completely underleveraged on the website",
+            "Havells prominently displays free installation badges, applicable offers, and loyalty token earnings — these convert browsers into buyers by reducing perceived risk",
+        ],
+        [
+            "Add a \"Why Choose Voltas\" section with: Tata Group heritage, pan-India service network reach, customer satisfaction stats, and industry awards",
+            "Add a review carousel pulling from Judge.me — even 10–15 genuine reviews with photos create significant social proof for appliance purchases",
+        ],
+        "Standard — 8/10 top electronics stores have social proof sections",
+    ),
+])
+
+# ═══════════════════════════════════════════════════════════
+# COLLECTION (4 cards)
+# ═══════════════════════════════════════════════════════════
+col_cards = "\n".join([
+    card(
+        "Key spec icons on collection cards help buyers compare at a glance — Voltas shows only images and model codes",
+        "screenshots/col_cards_client.jpeg", "Voltas — AC Collection (no spec badges)",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Product Cards with Key Specs",
+        [
+            "Voltas collection cards show: product image, full technical model name (ALL CAPS), MRP, offer price, savings, and an \"Add to compare\" link — but no structured spec badges for tonnage, star rating, or key features",
+            "For AC purchases, buyers need to quickly compare: tonnage (1/1.5/2 ton), energy rating (3/4/5 star), and key feature (inverter/fixed speed) — these should be scannable badges, not buried in the title",
+            "The \"Add to compare\" feature exists (good) but spec badges would reduce the need for comparison by making key differences visible at the card level",
+        ],
+        [
+            "Add structured spec badges below each product image: tonnage pill, star rating badge, and one key feature tag (e.g., \"Inverter\", \"AI Mode\")",
+            "Use Impulse theme's built-in swatch/variant display to show tonnage or color variants directly on cards",
+        ],
+        "Standard — 9/10 top electronics stores show spec icons on collection cards",
+    ),
+    card(
+        "Advanced category filters with spec-based facets increase product discovery by 25–40% — Voltas has basic filter only",
+        "screenshots/col_titles_client.jpeg", "Voltas — Basic Filter + Sort",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — Category Navigation with Specs",
+        [
+            "Voltas collection page has a simple \"Filter\" button and \"Best selling\" sort dropdown — opening the filter reveals basic options but lacks spec-based facets (tonnage, star rating, price range, features)",
+            "For a catalog with 50+ AC models, spec-based filtering is essential — buyers typically know their tonnage requirement and budget range before browsing",
+            "Boost Commerce search app is installed but the filter UI doesn't leverage its advanced faceting capabilities",
+            "The filter UX on mobile requires a full-page overlay — no sticky filter pills or quick-filter chips visible during browsing",
+        ],
+        [
+            "Configure Boost Commerce filters with electronics-specific facets: Tonnage (1/1.5/2 Ton), Star Rating (3/4/5 Star), Price Range (₹25K-35K, ₹35K-50K, ₹50K+), Type (Split/Window), Features (Inverter, Wi-Fi, etc.)",
+            "Add sticky filter chips above the product grid for the most-used filters (tonnage and star rating) — allow one-tap filtering without opening the full filter panel",
+        ],
+        "Standard — 9/10 top electronics stores have advanced spec-based filters",
+    ),
+    card(
+        "Excessively long product titles reduce scannability and mobile usability — Voltas titles are 60–80 characters of model codes",
+        "screenshots/col_titles_client.jpeg", "Voltas — Long Technical Titles",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Clean Product Names",
+        [
+            "Voltas product titles on collection cards read like database entries: \"VOLTAS SPLIT AIR CONDITIONER, 2 TON, 3 STAR - 243INV VECTRA ELEGANT\" — 70+ characters of all-caps technical jargon",
+            "On mobile (375px), these titles wrap to 5–6 lines, pushing pricing and CTAs below the fold and making the grid feel cluttered",
+            "The model code (243INV) is meaningless to consumers — it should be metadata, not the headline",
+            "Havells uses concise, readable titles: \"Stunnair Split AC 1.5 - 5 Star\" (30 characters) — all key specs are communicated in a scannable format",
+        ],
+        [
+            "Restructure product titles to: \"[Series Name] [Type] — [Tonnage], [Star Rating]\" format. Example: \"Vectra Emerald Split AC — 1 Ton, 3 Star\"",
+            "Move model codes to a secondary line or metadata tag — they're useful for warranty/service lookup but not for purchase decisions",
+        ],
+        "Growing — concise titles are becoming standard as mobile-first browsing increases",
+    ),
+    card(
+        "Quick-add buttons on collection cards can increase add-to-cart rate by 10–15% — Voltas has no quick-add",
+        None, "Voltas — No quick-add on cards",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Add to Cart on Cards",
+        [
+            "Voltas collection cards have no quick-add button — users must click through to the PDP, then enter a pincode, then click Add to Cart (3+ steps vs 1 step for quick-add)",
+            "The \"Add to compare\" button exists on cards but the more valuable \"Add to Cart\" / \"Quick View\" action is missing",
+            "For ACs where the primary variant is tonnage (and variants aren't color/size swatches), a quick-add with variant selection popup would significantly streamline the purchase flow",
+            "Havells shows \"Add to Cart\" and \"View Details\" buttons directly on collection cards — enabling impulse additions",
+        ],
+        [
+            "Enable Impulse theme's built-in quick-add or quick-view feature — display a \"Quick View\" popup with variant selection and ATC on collection cards",
+            "Consider whether the pincode gate should apply at PDP level rather than blocking ATC entirely — show ATC on cards and validate pincode in cart/checkout instead",
+        ],
+        "Growing — 6/10 top electronics stores offer quick-add or quick-view on collection cards",
+    ),
+])
+
+# ═══════════════════════════════════════════════════════════
+# PDP (5 cards)
+# ═══════════════════════════════════════════════════════════
+pdp_cards = "\n".join([
+    card(
+        "Trust badges near the Add to Cart button increase conversion by 5–10% — Voltas PDP has no trust indicators near ATC",
+        "screenshots/pdp_pincode_client.jpeg", "Voltas — PDP ATC area (no trust badges)",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — Installation Badge + Offers near ATC",
+        [
+            "The Voltas PDP ATC area shows: pincode checker, a greyed-out ATC button (until pincode validated), and \"Add to Compare\" — but zero trust badges",
+            "No warranty badge, no free installation promise, no secure payment icons, no Tata guarantee — for a ₹32,000+ purchase, this is a critical trust gap",
+            "The text below ATC reads \"Order once Invoiced cannot be cancelled\" and \"Refund will be credited within 14 working days\" — these are negative/restrictive messages that reduce purchase confidence instead of building it",
+            "Havells shows \"Free Installation has been added\" badge with a wrench icon + \"Applicable Offers\" section with loyalty token earnings — these convert hesitant buyers",
+        ],
+        [
+            "Add 3–4 trust badges near ATC: \"Free Installation\", \"10-Year Compressor Warranty\", \"Tata Group Company\", \"Secure Payment\" — use icon + short text format",
+            "Replace the negative policy text (\"cannot be cancelled\") with positive framing: \"Free Installation Included\" and \"Easy Returns within 14 Days\"",
+        ],
+        "Standard — 7/10 top electronics stores show trust badges near ATC (India: 5/5)",
+    ),
+    card(
+        "Visual spec icons help buyers evaluate products 40% faster than plain text — Voltas specs are a plain bullet list",
+        "screenshots/pdp_specs_client.jpeg", "Voltas — Plain text spec bullets",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Structured Key Features",
+        [
+            "Voltas product specs are presented as a plain unformatted bullet list: 20+ items including model number, tonnage, star rating, technical features, and manufacturer details — all in the same visual hierarchy",
+            "Critical purchase-decision specs (tonnage, star rating, cooling capacity) are mixed with secondary technical details (PCB box material, hydrophilic coating) — buyers can't quickly find what matters",
+            "No icon-based spec display, no tabbed organization (Specs / Description / Reviews), no comparison-friendly structured data",
+            "Havells uses a \"Key Features\" heading with curated top-10 features, plus separate collapsible sections for Technical Specifications, Features, Reviews, and Downloads",
+        ],
+        [
+            "Create a visual \"Key Specs\" section with 4–6 icon-based cards above the detailed specs: Tonnage, Star Rating, Cooling Capacity, Special Feature, Warranty, Noise Level",
+            "Organize remaining specs into collapsible tabs: \"Technical Specifications\", \"Description\", \"Reviews\" — the Impulse theme supports tabbed layouts natively",
+        ],
+        "Standard — 9/10 top electronics stores use visual spec icons on PDPs",
+    ),
+    card(
+        "An EMI/installment calculator on the PDP can increase conversion by 15–20% for high-AOV products — Voltas has no EMI display",
+        None, "Voltas — No EMI calculator (₹32,000 product)",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — Price with Offers Section",
+        [
+            "Voltas sells ACs priced ₹32,000–75,000 — yet the PDP shows no EMI/installment option, no BNPL messaging, and no affordability nudge",
+            "Simpl (Pay Later) is detected in the tech stack but is not surfaced on the PDP — the payment flexibility message is invisible to the buyer during the product evaluation stage",
+            "For Indian electronics e-commerce, EMI options are a Standard pattern (present on 4/5 top India electronics stores) — missing EMI display at this price point is a significant conversion barrier",
+            "A simple \"Starting at ₹X/month\" message below the price can reduce perceived cost anxiety by 30–40%",
+        ],
+        [
+            "Add an EMI calculator widget below the price: show monthly installment for 3/6/9/12-month options with popular banks (HDFC, ICICI, SBI)",
+            "Surface Simpl BNPL messaging on PDP: \"Pay in 3 interest-free installments of ₹10,667\" — place it directly below the offer price",
+        ],
+        "Standard — 4/5 India electronics stores show EMI/installment on PDP",
+    ),
+    card(
+        "Low-contrast CTA buttons reduce visibility and click-through — Voltas ATC button blends into the background",
+        "screenshots/pdp_pincode_client.jpeg", "Voltas — Low contrast ATC button",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — High contrast dual CTAs",
+        [
+            "The Voltas ATC button uses a thin grey/white outline style that blends into the page background — it doesn't stand out as the primary action",
+            "When the pincode hasn't been entered, the ATC appears greyed out (disabled state) — this is correct behavior but the enabled state also lacks visual punch",
+            "Havells uses a dual-CTA approach: white outlined \"Add to Cart\" + red filled \"Buy Now\" in a sticky bottom bar — the high-contrast red immediately draws the eye",
+            "On mobile, the ATC needs to be the most visually prominent element on the page — Voltas's current styling makes it easy to miss",
+        ],
+        [
+            "Restyle ATC as a filled, high-contrast button (Voltas blue #00529B or contrasting orange) with larger text — make it the most visually dominant element on mobile PDP",
+            "Consider adding a \"Buy Now\" button alongside ATC for one-click direct-to-checkout — the Impulse theme supports dual CTA configuration",
+        ],
+        "Growing — high-contrast dual CTAs are standard on 7/10 electronics PDPs",
+    ),
+    card(
+        "Pincode-gating the ATC button creates friction that can reduce add-to-cart rate by 20–30% — Voltas requires pincode before any cart action",
+        "screenshots/pdp_pincode_client.jpeg", "Voltas — ATC disabled until pincode check",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — ATC always enabled, pincode optional",
+        [
+            "Voltas completely disables the Add to Cart button until the user enters a valid pincode — the button is greyed out with no click affordance until serviceability is confirmed",
+            "This creates a 3-step flow: (1) find the pincode field, (2) type 6-digit pincode, (3) click Check, (4) if serviceable, ATC becomes active — vs competitors' 1-step \"Add to Cart\"",
+            "Havells allows immediate ATC with an optional pincode check for delivery details — the buying action is never blocked",
+            "The friction is compounded by an exchange offer checkbox that appears after pincode validation — adding yet another decision point before the user can proceed to cart",
+        ],
+        [
+            "Make ATC always enabled — move pincode validation to the cart or checkout step where delivery address is naturally collected",
+            "If serviceability check must stay on PDP, make it informational (\"Check delivery to your area\") rather than a gate that blocks the purchase flow entirely",
+        ],
+        "Critical — pincode-gating ATC is an anti-pattern; 9/10 competitors allow immediate ATC",
+    ),
+])
+
+# ═══════════════════════════════════════════════════════════
+# CART (4 cards)
+# ═══════════════════════════════════════════════════════════
+cart_cards = "\n".join([
+    card(
+        "Cross-sell recommendations in cart can increase AOV by 10–15% — Voltas cart has zero product suggestions",
+        "screenshots/cart_drawer_client.jpeg", "Voltas — Cart drawer (no cross-sell)",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — \"You may also like\" recommendations",
+        [
+            "The Voltas cart drawer shows: product image, name, quantity adjuster, price, GSTIN field, Technician ID field, subtotal, policy checkbox, and checkout button — but absolutely no product recommendations",
+            "For appliance purchases, cross-sell opportunities are high-value: AC stabilizer (₹2,000–4,000), installation kit, extended warranty, air purifier, etc.",
+            "The \"Frequently Bought Together\" section exists on the PDP (good) but nothing carries into the cart where the buyer is already committed",
+            "The GSTIN and Technician ID fields in the cart drawer are unusual and add visual clutter for consumer buyers — these should be optional/collapsed or moved to checkout",
+        ],
+        [
+            "Add a \"Complete Your Setup\" cross-sell section in the cart: stabilizer, extended warranty, installation accessories — these are natural complementary products with high attach rates",
+            "Move GSTIN and Technician ID fields to checkout or behind an expandable \"Business Customer?\" toggle — they add friction for the 90%+ consumer buyers",
+        ],
+        "Standard — 8/10 top electronics stores show cross-sell in cart",
+    ),
+    card(
+        "A free shipping threshold progress bar can increase AOV by 8–12% — Voltas cart has no shipping visibility",
+        None, "Voltas — No shipping bar or delivery info in cart",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — Free Installation Badge",
+        [
+            "The Voltas cart drawer shows \"Shipping, taxes, and discount codes calculated at checkout\" — no shipping cost estimate, no free shipping threshold, no delivery timeline",
+            "For ₹32,000+ appliance purchases, shipping cost uncertainty is less of an issue than delivery timeline uncertainty — when will it arrive? Is installation included?",
+            "No free installation badge or delivery date is shown in the cart despite the PDP having a pincode checker with serviceability info — this context is lost in the transition to cart",
+        ],
+        [
+            "Add a delivery timeline and free installation confirmation in the cart: \"Free Installation Included · Estimated delivery: [date range]\"",
+            "If a free shipping threshold exists, add a progress bar — if all orders ship free, state it explicitly: \"Free Shipping on All Orders\"",
+        ],
+        "Growing — delivery timeline visibility in cart reduces abandonment for high-AOV items",
+    ),
+    card(
+        "Payment trust icons (Visa, Mastercard, UPI, RuPay) near checkout reduce payment anxiety — Voltas cart has none",
+        "screenshots/cart_drawer_client.jpeg", "Voltas — Cart checkout area (no trust icons)",
+        "screenshots/havells_features_benchmark.jpeg", "Havells — Secure Checkout Elements",
+        [
+            "The Voltas cart drawer checkout area shows only: subtotal, shipping note, policy checkbox, and a greyed-out checkout button — no payment method icons, no security badges, no trust signals",
+            "For a ₹32,000+ online transaction, payment trust is critical — buyers need to see familiar payment logos (Visa, Mastercard, UPI, RuPay, Net Banking) before clicking checkout",
+            "The policy checkbox requirement adds friction — checkout is disabled until the box is checked, and the text links to a policies page that could cause the user to leave the cart",
+        ],
+        [
+            "Add a row of payment method icons below the checkout button: Visa, Mastercard, RuPay, UPI, Net Banking + \"100% Secure Payment\" badge with lock icon",
+            "Consider making the policy acceptance implicit (with a link to policies) rather than an explicit checkbox gate — or auto-check it with a \"By proceeding, you agree to our policies\" text",
+        ],
+        "Standard — 7/10 top electronics stores show payment trust icons in cart",
+    ),
+    card(
+        "The mandatory policy checkbox before checkout adds an extra step that increases cart abandonment — most stores handle this at checkout",
+        "screenshots/cart_drawer_client.jpeg", "Voltas — Policy checkbox blocks checkout",
+        "screenshots/havells_pdp_benchmark.jpeg", "Havells — Direct checkout, no checkbox gate",
+        [
+            "Voltas requires users to check \"I have read &amp; agree with the policies mentioned on this site\" before the checkout button becomes active — this is the second friction gate after the pincode requirement",
+            "The checkout button is visually greyed out and disabled until the checkbox is checked — many mobile users may not understand why checkout isn't working",
+            "Standard Shopify practice is to handle policy acceptance at checkout, not in the cart — this extra step is unusual and adds unnecessary friction",
+            "Combined with the pincode-gated ATC on PDP, a buyer faces 4+ friction steps before reaching checkout: enter pincode → check serviceable → add to cart → check policy box → checkout",
+        ],
+        [
+            "Remove the policy checkbox from the cart — move policy acceptance to checkout where Shopify handles it natively with a \"By completing this purchase, you agree to our Terms\" footer text",
+            "If the checkbox must remain for legal reasons, auto-display it as checked with an option to uncheck, or use a text-based acceptance (\"By proceeding, you agree to our policies\") without a checkbox gate",
+        ],
+        "Anti-pattern — mandatory cart checkboxes increase abandonment; handle at checkout",
+    ),
+])
+
+html = html.replace("{{FINDING_CARDS_HOMEPAGE}}", hp_cards)
+html = html.replace("{{FINDING_CARDS_COLLECTION}}", col_cards)
+html = html.replace("{{FINDING_CARDS_PDP}}", pdp_cards)
+html = html.replace("{{FINDING_CARDS_CART}}", cart_cards)
+
+# ── Apps HTML (14 present apps — detection March 17, 2026) ────────────
+apps_present = """<div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Google Tag Manager</div>
+                                    <div class="app-category">Analytics & Tracking</div>
+                                    <div class="app-benchmark-tag">Container: GTM-KCPW6GW</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">GA4 (gtag.js)</div>
+                                    <div class="app-category">Analytics & Tracking</div>
+                                    <div class="app-benchmark-tag">Measurement ID: G-WF54WYTR46</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Facebook Pixel</div>
+                                    <div class="app-category">Ads & Attribution</div>
+                                    <div class="app-benchmark-tag">⚠ Duplicate Pixel ID detected — causes double-counting</div>
+                                </div>
+                                <span class="app-quality" title="Needs attention">⚠</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Microsoft Clarity</div>
+                                    <div class="app-category">Heatmaps & Session Recording</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Klaviyo</div>
+                                    <div class="app-category">Email Marketing & Automation</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Judge.me Reviews</div>
+                                    <div class="app-category">Reviews & Social Proof</div>
+                                    <div class="app-benchmark-tag">Recently installed — limited review coverage on products</div>
+                                </div>
+                                <span class="app-quality" title="Needs attention">⚠</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Razorpay</div>
+                                    <div class="app-category">Payment Gateway</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Simpl Pay Later</div>
+                                    <div class="app-category">BNPL / Pay Later</div>
+                                    <div class="app-benchmark-tag">Installed but not surfaced on PDPs — buyers can't see BNPL option during evaluation</div>
+                                </div>
+                                <span class="app-quality" title="Needs attention">⚠</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Boost Commerce</div>
+                                    <div class="app-category">Search & Filtering</div>
+                                    <div class="app-benchmark-tag">⚠ Theme not integrated warning — filter capabilities may be limited</div>
+                                </div>
+                                <span class="app-quality" title="Needs attention">⚠</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">XB Wishlist</div>
+                                    <div class="app-category">Wishlist & Save for Later</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">CleverTap</div>
+                                    <div class="app-category">Customer Data Platform / Engagement</div>
+                                    <div class="app-benchmark-tag">⚠ Invalid visitorId error in console — integration issue</div>
+                                </div>
+                                <span class="app-quality" title="Needs attention">⚠</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">FirstHive CDP</div>
+                                    <div class="app-category">Customer Data Platform</div>
+                                    <div class="app-benchmark-tag">Overlaps with CleverTap — two CDPs running simultaneously adds script overhead</div>
+                                </div>
+                                <span class="app-quality" title="Needs attention">⚠</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">SmartifyApps (DECO Product Labels)</div>
+                                    <div class="app-category">Product Badges & Labels</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">privEzi Cookie Consent</div>
+                                    <div class="app-category">Privacy & Compliance</div>
+                                </div>
+                                <span class="app-quality" title="Good choice">✓</span>
+                            </div>"""
+
+apps_missing = """<div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">EMI/Installment Calculator <span class="app-priority-badge critical-priority">Critical</span></div>
+                                    <div class="app-category">Payment Flexibility</div>
+                                    <div class="app-impact-tag conversion">📈 Conversion +15–20% for high-AOV</div>
+                                    <div class="app-benchmark-tag">Standard on 4/5 India electronics stores — critical for ₹30K–75K products</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Cross-sell / Upsell App <span class="app-priority-badge critical-priority">Critical</span></div>
+                                    <div class="app-category">Revenue Optimization</div>
+                                    <div class="app-impact-tag revenue">💰 AOV +10–15%</div>
+                                    <div class="app-benchmark-tag">Cart has zero recommendations — stabilizer, warranty, accessories are natural cross-sells</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Cart Abandonment Recovery <span class="app-priority-badge critical-priority">Critical</span></div>
+                                    <div class="app-category">Revenue Recovery</div>
+                                    <div class="app-impact-tag revenue">💰 Recovers 5–15% of abandoned carts</div>
+                                    <div class="app-benchmark-tag">Essential for high-AOV electronics — buyers often research across sessions before committing</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Extended Warranty App <span class="app-priority-badge recommended-priority">Recommended</span></div>
+                                    <div class="app-category">Post-Purchase Revenue</div>
+                                    <div class="app-impact-tag revenue">💰 Post-purchase revenue +5–8%</div>
+                                    <div class="app-benchmark-tag">Growing trend — Havells offers AMC/Extended Warranty as a key service</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Live Chat / WhatsApp Support <span class="app-priority-badge recommended-priority">Recommended</span></div>
+                                    <div class="app-category">Customer Support</div>
+                                    <div class="app-impact-tag conversion">📈 Reduces pre-purchase doubts for high-AOV</div>
+                                    <div class="app-benchmark-tag">Present on 6/10 top electronics stores — critical for ₹30K+ purchase decisions</div>
+                                </div>
+                            </div>"""
+
+html = html.replace("{{APPS_PRESENT_HTML}}", apps_present)
+html = html.replace("{{APPS_MISSING_HTML}}", apps_missing)
+
+# ── Strip remaining template comments ─────────────────────
+html = re.sub(r'<!--\s*POPULATE:.*?-->', '', html, flags=re.DOTALL)
+html = re.sub(r'<!--\s*VIDEO FINDING CARD PATTERN.*?-->', '', html, flags=re.DOTALL)
+html = re.sub(r'/\*[^\n]*\{\{[A-Z_]+\}\}[^\n]*\*/', '', html)
+
+# ── Verify no template variables remain ───────────────────
+remaining = re.findall(r'\{\{[A-Z_]+\}\}', html)
+if remaining:
+    print(f"⚠ WARNING: {len(remaining)} unreplaced variables found:")
+    for v in sorted(set(remaining)):
+        print(f"   {v}")
+else:
+    print("✓ All template variables replaced successfully")
+
+# ── Write output ──────────────────────────────────────────
+with open(OUTPUT, "w") as f:
+    f.write(html)
+
+lines = html.count('\n') + 1
+print(f"✓ Written to {OUTPUT}")
+print(f"  Total lines: {lines}")
+print(f"  File size: {len(html):,} bytes")
