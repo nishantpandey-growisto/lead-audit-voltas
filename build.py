@@ -261,20 +261,21 @@ hp_cards = "\n".join([
         "Standard — 9/10 top electronics stores have trust/USP sections on homepage",
     ),
     card(
-        "Star ratings on product cards increase click-through by 15–25% — Voltas product cards show no ratings",
-        "screenshots/hp_products_client.jpeg", "Voltas — Best Sellers (no ratings)",
-        "screenshots/bluestar_product_cards.jpeg", "Blue Star — Product cards with star ratings, tonnage & Compare",
+        "Rich product cards with specs, energy ratings &amp; CTAs increase click-through by 15–25% — Voltas cards show only image, name &amp; price",
+        "screenshots/hp_products_client.jpeg", "Voltas — Best Sellers (minimal cards: image, model name, price only)",
+        "screenshots/bluestar_product_cards.jpeg", "Blue Star — Rich cards with series name, tonnage, BEE star ratings, Compare &amp; Explore CTAs",
         [
-            "Voltas Best Seller product cards show only: product image, technical model name, MRP, offer price, and savings — no star ratings or review counts",
-            "Judge.me reviews app is installed but not added to all product page templates — reviews are not surfaced on product cards and have inconsistent visibility across PDPs",
+            "Voltas Best Seller product cards show only: product image, technical model name, MRP, offer price, and savings — no energy ratings, no tonnage options, no comparison CTA, no review counts",
             "Product titles are excessively long and technical: \"VOLTAS SPLIT AIR CONDITIONER, 1.5 TON, 3 STAR - 183INV VECTRA ZEPHYR GOLD\" — this is a SKU name, not a customer-friendly title",
-            "Blue Star product cards show series name, starting price, tonnage options (1 TON / 1.5 TON), BEE star rating badges, Compare button, and Explore CTA — far richer than Voltas's minimal cards",
+            "Blue Star product cards show series name, starting price, tonnage options (1 TON / 1.5 TON), BEE star rating badges, Compare button, and Explore CTA — far richer information density that helps buyers shortlist without visiting each PDP",
+            "Judge.me reviews app is installed but not added to all product page templates — enabling star ratings on cards would add another layer of decision-making data",
         ],
         [
-            "Enable Judge.me star ratings on collection/homepage product cards — show average rating + review count below the product title",
+            "Enrich product cards: add BEE star rating badge, tonnage/capacity options, and a Compare CTA to match competitor card density",
             "Rewrite product titles to be customer-friendly: \"Vectra Emerald Split AC — 1 Ton, 3 Star\" instead of the full model code",
+            "Enable Judge.me star ratings on collection/homepage product cards — show average rating + review count below the product title",
         ],
-        "Standard — 8/10 top electronics stores show star ratings on product cards",
+        "Standard — 8/10 top electronics stores show rich product cards with specs, ratings &amp; CTAs",
     ),
     card(
         "A social proof section (reviews, customer count, awards) builds purchase confidence for high-AOV products — Voltas has none",
@@ -487,12 +488,12 @@ cart_cards = "\n".join([
     ),
     card(
         "Payment trust icons (Visa, Mastercard, UPI, RuPay) near checkout reduce payment anxiety — Voltas cart has none",
-        "screenshots/cart_drawer_client.jpeg", "Voltas — Cart checkout area (no trust icons)",
-        "screenshots/bajaj_reviews.jpeg", "Bajaj — Customer reviews and trust elements reinforcing purchase confidence",
+        "screenshots/cart_drawer_client.jpeg", "Voltas — Cart checkout area (no payment icons, no security badges)",
+        "screenshots/mockup_payment_trust.jpeg", "Proposed Implementation — Payment trust icons below checkout button",
         [
             "The Voltas cart drawer checkout area shows only: subtotal, shipping note, policy checkbox, and a greyed-out checkout button — no payment method icons, no security badges, no trust signals",
             "For a ₹32,000+ online transaction, payment trust is critical — buyers need to see familiar payment logos (Visa, Mastercard, UPI, RuPay, Net Banking) before clicking checkout",
-            "Competitors like Bajaj prominently display customer reviews and trust-reinforcing elements throughout their purchase flow — Voltas's cart area is entirely transactional with zero trust signals",
+            "Industry best practice: payment method icons + a \"100% Secure Payment\" badge below the checkout button reduce payment anxiety and reassure buyers their transaction is safe",
             "The policy checkbox requirement adds further friction — checkout is disabled until the box is checked, and the text links to a policies page that could cause the user to leave the cart",
         ],
         [
@@ -503,13 +504,13 @@ cart_cards = "\n".join([
     ),
     card(
         "The mandatory policy checkbox before checkout adds an extra step that increases cart abandonment — most stores handle this at checkout",
-        "screenshots/cart_drawer_client.jpeg", "Voltas — Policy checkbox blocks checkout",
-        "screenshots/bluestar_pdp_pincode_atc.jpeg", "Blue Star — Direct ATC + Compare + Warranty badges, no checkbox gate",
+        "screenshots/cart_drawer_client.jpeg", "Voltas — Policy checkbox blocks checkout (greyed-out button until checked)",
+        "screenshots/atomberg_cart_clean.jpeg", "Atomberg — Clean cart flow: product, coupons, delivery check, direct Checkout (no checkbox gate)",
         [
             "Voltas requires users to check \"I have read &amp; agree with the policies mentioned on this site\" before the checkout button becomes active — this is the second friction gate after the pincode requirement",
             "The checkout button is visually greyed out and disabled until the checkbox is checked — many mobile users may not understand why checkout isn't working",
-            "Blue Star's purchase flow has no such checkbox — buyers select specs, check pincode, and Add to Cart in a clean linear flow with warranty trust badges reinforcing confidence",
-            "Combined with the pincode-gated ATC on PDP, a buyer faces 4+ friction steps before reaching checkout: enter pincode → check serviceable → add to cart → check policy box → checkout",
+            "Atomberg's cart flow is frictionless: product details → coupons &amp; offers → delivery estimation → direct Checkout button. No checkbox gate, no greyed-out button — policy acceptance is handled at the checkout/payment step",
+            "Combined with the pincode-gated ATC on PDP, a Voltas buyer faces 4+ friction steps before reaching checkout: enter pincode → check serviceable → add to cart → check policy box → checkout",
         ],
         [
             "Remove the policy checkbox from the cart — move policy acceptance to checkout where Shopify handles it natively with a \"By completing this purchase, you agree to our Terms\" footer text",
