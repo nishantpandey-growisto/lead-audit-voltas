@@ -39,10 +39,10 @@ replacements = {
     # Section 02 — Traffic & Conversion Context
     "{{PROXY_TIER_NAME}}": "Tier 4: Enterprise",
     "{{PROXY_TIER_SESSIONS}}": "200K+",
-    "{{PROXY_TIER_NARRATIVE}}": "Voltas is India's largest AC brand by market share with an extensive offline dealer network. With 200+ products listed, Judge.me reviews recently installed, and a strong social presence (~500K Instagram followers), the store signals <strong>Tier 4 (Enterprise)</strong> traffic levels. However, the online D2C channel appears to be a newer initiative — the Shopify store launched on the Impulse theme with significant features still unconfigured.",
-    "{{PROXY_PRODUCT_COUNT}}": "200+",
-    "{{PROXY_REVIEW_COUNT}}": "Limited (Judge.me recently installed)",
-    "{{PROXY_INSTAGRAM}}": "N/A (Tata Group brand — offline-heavy)",
+    "{{PROXY_TIER_NARRATIVE}}": "Voltas is India's largest AC brand by market share with an extensive offline dealer network. Only 74 products are listed on the store (/collections/all shows 74), Judge.me reviews are recently installed but not yet added to all product page templates, and the brand maintains an active Instagram presence (82.1K followers <a href=\"https://www.instagram.com/myvoltas/\" target=\"_blank\">@myvoltas</a>). The store signals <strong>Tier 4 (Enterprise)</strong> traffic levels based on brand strength. However, the online D2C channel appears to be a newer initiative — the Shopify store launched on the Impulse theme with significant features still unconfigured.",
+    "{{PROXY_PRODUCT_COUNT}}": "74",
+    "{{PROXY_REVIEW_COUNT}}": "Limited (Judge.me installed — not on all templates)",
+    "{{PROXY_INSTAGRAM}}": "82.1K (@myvoltas)",
     "{{PROXY_APP_COUNT}}": "14",
     "{{PROXY_ESTIMATED_REVENUE}}": "500000000",
 
@@ -104,7 +104,7 @@ replacements = {
     "{{TECH_PLATFORM_STATUS}}": "good",
     "{{TECH_PLATFORM_STATUS_LABEL}}": "Modern Platform",
     "{{PLATFORM}}": "Shopify",
-    "{{PLATFORM_NOTES}}": "Shopify — auto-scaling, PCI-compliant, 99.99% uptime. Solid platform for a Tata Group brand entering D2C e-commerce with 200+ SKUs across ACs, water heaters, air coolers, and home appliances.",
+    "{{PLATFORM_NOTES}}": "Shopify — auto-scaling, PCI-compliant, 99.99% uptime. Solid platform for a Tata Group brand entering D2C e-commerce with 74 listed products across ACs, water heaters, air coolers, and home appliances.",
     "{{TECH_THEME_STATUS}}": "good",
     "{{TECH_THEME_STATUS_LABEL}}": "Premium Theme",
     "{{THEME_NAME}}": "Impulse 7.4.0",
@@ -140,7 +140,7 @@ replacements = {
     # Section 06: App Ecosystem
     "{{APPS_MISSING_COUNT}}": "5",
     "{{APPS_BENCHMARK_CONTEXT}}": "Voltas has 14 detected apps/scripts covering analytics, reviews, email, payments, and search — but is missing critical conversion-driving categories for high-AOV electronics: EMI calculator, cross-sell/upsell, and cart recovery",
-    "{{APP_STACK_NARRATIVE}}": "Voltas has 14 apps spanning analytics (GTM, GA4, Clarity, Facebook Pixel, FirstHive, CleverTap, Havas), reviews (Judge.me), email (Klaviyo), payments (Razorpay, Simpl), search (Boost Commerce), wishlist (XB Wishlist), and cookie consent (privEzi). The analytics stack is comprehensive — arguably over-instrumented with both FirstHive and CleverTap providing overlapping CDP functionality, plus a Havas media pixel. However, critical revenue-driving categories are missing: no EMI/BNPL calculator on PDPs despite ₹30K–75K AOV products, no cross-sell/upsell app (cart has zero product recommendations), and no cart abandonment recovery app. Judge.me reviews appear recently installed with limited review coverage. The duplicate Facebook Pixel ID error and jQuery dependency errors (<code>$ is not defined</code>) indicate integration issues that should be resolved.",
+    "{{APP_STACK_NARRATIVE}}": "Voltas has 14 apps spanning analytics (GTM, GA4, Clarity, Facebook Pixel, FirstHive, CleverTap, Havas), reviews (Judge.me), email (Klaviyo), payments (Razorpay, Simpl), search (Boost Commerce), wishlist (XB Wishlist), and cookie consent (privEzi). The analytics stack is comprehensive — arguably over-instrumented with both FirstHive and CleverTap providing overlapping CDP functionality, plus a Havas media pixel. However, critical revenue-driving categories are missing: no EMI/BNPL calculator on PDPs despite ₹30K–75K AOV products, no cross-sell/upsell app (cart has zero product recommendations), and no cart abandonment recovery app. Judge.me reviews is installed but not added to all product page templates, resulting in inconsistent review visibility. The duplicate Facebook Pixel ID error and jQuery dependency errors (<code>$ is not defined</code>) indicate integration issues that should be resolved.",
 
     # JS nav
     "{{UX_FINDING_1_SHORT_TITLE}}": "UX & Conversion Findings",
@@ -266,7 +266,7 @@ hp_cards = "\n".join([
         "screenshots/bluestar_product_cards.jpeg", "Blue Star — Product cards with star ratings, tonnage & Compare",
         [
             "Voltas Best Seller product cards show only: product image, technical model name, MRP, offer price, and savings — no star ratings or review counts",
-            "Judge.me reviews app is installed but reviews are not surfaced on product cards — they only appear on PDPs (if at all)",
+            "Judge.me reviews app is installed but not added to all product page templates — reviews are not surfaced on product cards and have inconsistent visibility across PDPs",
             "Product titles are excessively long and technical: \"VOLTAS SPLIT AIR CONDITIONER, 1.5 TON, 3 STAR - 183INV VECTRA ZEPHYR GOLD\" — this is a SKU name, not a customer-friendly title",
             "Blue Star product cards show series name, starting price, tonnage options (1 TON / 1.5 TON), BEE star rating badges, Compare button, and Explore CTA — far richer than Voltas's minimal cards",
         ],
@@ -573,7 +573,7 @@ apps_present = """<div class="app-item present">
                                 <div class="app-item-details">
                                     <div class="app-name">Judge.me Reviews</div>
                                     <div class="app-category">Reviews & Social Proof</div>
-                                    <div class="app-benchmark-tag">Recently installed — limited review coverage on products</div>
+                                    <div class="app-benchmark-tag">Installed but not added to all product page templates — inconsistent review visibility</div>
                                 </div>
                                 <span class="app-quality" title="Needs attention">⚠</span>
                             </div>
