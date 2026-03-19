@@ -28,12 +28,12 @@ replacements = {
     "{{SEVERITY_CRITICAL_COUNT}}": "5",
     "{{SEVERITY_IMPORTANT_COUNT}}": "7",
     "{{SEVERITY_OPPORTUNITY_COUNT}}": "4",
-    "{{FINDING_COUNT_TOTAL}}": "16",
+    "{{FINDING_COUNT_TOTAL}}": "15",
     "{{COMPETITOR_COUNT}}": "4",
     "{{APPS_PRESENT_COUNT}}": "14",
     "{{FINDING_COUNT_HOMEPAGE}}": "3",
     "{{FINDING_COUNT_COLLECTION}}": "4",
-    "{{FINDING_COUNT_PDP}}": "5",
+    "{{FINDING_COUNT_PDP}}": "4",
     "{{FINDING_COUNT_CART}}": "4",
 
     # Section 02 — Traffic & Conversion Context
@@ -413,7 +413,7 @@ pdp_cards = "\n".join([
     card(
         "An EMI/installment calculator on the PDP can increase conversion by 15–20% for high-AOV products — Voltas has no EMI display",
         "screenshots/mockup_emi_calc.jpeg", "Proposed Implementation — Voltas PDP",
-        "screenshots/bluestar_pdp_pincode_atc.jpeg", "Blue Star — Star Rating + Tonnage selectors + Pincode + ATC + Warranty badges",
+        "screenshots/samsung_emi_atc.jpeg", "Samsung — EMI ₹2,664/mo prominently displayed + bold ATC + warranty info",
         [
             "Voltas sells ACs priced ₹32,000–75,000 — yet the PDP shows no EMI/installment option, no BNPL messaging, and no affordability nudge",
             "Simpl (Pay Later) is detected in the tech stack but is not surfaced on the PDP — the payment flexibility message is invisible to the buyer during the product evaluation stage",
@@ -429,7 +429,7 @@ pdp_cards = "\n".join([
     card(
         "Low-contrast CTA buttons reduce visibility and click-through — Voltas ATC button blends into the background",
         "screenshots/pdp_pincode_client.jpeg", "Voltas — Low contrast ATC button",
-        "screenshots/bluestar_pdp_top.jpeg", "Blue Star — Bold blue ATC button with clear visual hierarchy",
+        "screenshots/samsung_emi_atc.jpeg", "Samsung — Bold blue full-width ATC button with high contrast",
         [
             "The Voltas ATC button uses a thin grey/white outline style that blends into the page background — it doesn't stand out as the primary action",
             "When the pincode hasn't been entered, the ATC appears greyed out (disabled state) — this is correct behavior but the enabled state also lacks visual punch",
@@ -442,22 +442,6 @@ pdp_cards = "\n".join([
         ],
         "Growing — high-contrast dual CTAs are standard on 7/10 electronics PDPs",
     ),
-    card(
-        "Pincode-gating the ATC button creates friction that can reduce add-to-cart rate by 20–30% — Voltas requires pincode before any cart action",
-        "screenshots/pdp_pincode_client.jpeg", "Voltas — ATC disabled until pincode check",
-        "screenshots/crompton_pdp_top.jpeg", "Crompton — Product info + Buy From Store CTA without pincode gate",
-        [
-            "Voltas completely disables the Add to Cart button until the user enters a valid pincode — the button is greyed out with no click affordance until serviceability is confirmed",
-            "This creates a 3-step flow: (1) find the pincode field, (2) type 6-digit pincode, (3) click Check, (4) if serviceable, ATC becomes active — vs competitors' 1-step CTA",
-            "Crompton allows immediate access to the Buy From Store action without any pincode gate — product info, color swatches, and CTAs are all immediately accessible",
-            "The friction is compounded by an exchange offer checkbox that appears after pincode validation — adding yet another decision point before the user can proceed to cart",
-        ],
-        [
-            "Make ATC always enabled — move pincode validation to the cart or checkout step where delivery address is naturally collected",
-            "If serviceability check must stay on PDP, make it informational (\"Check delivery to your area\") rather than a gate that blocks the purchase flow entirely",
-        ],
-        "Critical — pincode-gating ATC is an anti-pattern; 9/10 competitors allow immediate ATC",
-    ),
 ])
 
 # ═══════════════════════════════════════════════════════════
@@ -467,7 +451,7 @@ cart_cards = "\n".join([
     card(
         "Cross-sell recommendations in cart can increase AOV by 10–15% — Voltas cart has zero product suggestions",
         "screenshots/cart_drawer_client.jpeg", "Voltas — Cart drawer (no cross-sell)",
-        "screenshots/havells_crosssell.jpeg", "Havells — \"You may also like\" cross-sell cards with ATC buttons",
+        "screenshots/mockup_crosssell_voltas.jpeg", "Proposed Implementation — Voltas cart with \"Complete Your Setup\" cross-sell section",
         [
             "The Voltas cart drawer shows: product image, name, quantity adjuster, price, GSTIN field, Technician ID field, subtotal, policy checkbox, and checkout button — but absolutely no product recommendations",
             "For appliance purchases, cross-sell opportunities are high-value: AC stabilizer (₹2,000–4,000), installation kit, extended warranty, air purifier, etc.",
@@ -481,20 +465,20 @@ cart_cards = "\n".join([
         "Standard — 8/10 top electronics stores show cross-sell in cart",
     ),
     card(
-        "A free shipping threshold progress bar can increase AOV by 8–12% — Voltas cart has no shipping visibility",
-        "screenshots/mockup_cart_delivery.jpeg", "Proposed Implementation — Voltas Cart",
-        "screenshots/bajaj_testimonials.jpeg", "Bajaj — Customer testimonials and trust-building content throughout purchase flow",
+        "A transparent subtotal breakdown with GST, shipping, and installation fees builds purchase confidence for high-AOV products — Voltas cart shows no breakdown",
+        "screenshots/cart_drawer_client.jpeg", "Voltas — Cart shows only subtotal with no breakdown (taxes, shipping calculated at checkout)",
+        "screenshots/mockup_subtotal_breakdown.jpeg", "Proposed Implementation — Order summary with GST, free shipping, free installation clearly shown",
         [
-            "The Voltas cart drawer shows \"Shipping, taxes, and discount codes calculated at checkout\" — no shipping cost estimate, no free shipping threshold, no delivery timeline",
-            "For ₹32,000+ appliance purchases, shipping cost uncertainty is less of an issue than delivery timeline uncertainty — when will it arrive? Is installation included?",
-            "No free installation badge or delivery date is shown in the cart despite the PDP having a pincode checker with serviceability info — this context is lost in the transition to cart",
-            "Competitors like Bajaj maintain confidence-building messaging throughout their purchase flow — Voltas drops all reassurance once the user reaches the cart",
+            "The Voltas cart drawer shows only: subtotal and \"Shipping, taxes, and discount codes calculated at checkout\" — no breakdown of what the customer is actually paying",
+            "For ₹30,000–75,000 appliance purchases, customers expect to see a clear order summary: product price, applicable discount, GST (28% on ACs), shipping cost, and installation cost",
+            "Hiding the GST breakdown until checkout creates surprise and doubt — customers may abandon if the final amount differs from what they expected",
+            "No confirmation of free shipping or free installation in the cart — both are key purchase motivators that should be visible at the point of commitment",
         ],
         [
-            "Add a delivery timeline and free installation confirmation in the cart: \"Free Installation Included · Estimated delivery: [date range]\"",
-            "If a free shipping threshold exists, add a progress bar — if all orders ship free, state it explicitly: \"Free Shipping on All Orders\"",
+            "Add a full \"Order Summary\" section in the cart: Subtotal, Discount (if applicable), GST (28% — show the amount), Shipping (show FREE explicitly), Installation (show FREE explicitly), and Total",
+            "Display trust badges below the checkout button: Secure Payment, Tata Guarantee, Easy Returns — reinforce confidence at the final decision point",
         ],
-        "Growing — delivery timeline visibility in cart reduces abandonment for high-AOV items",
+        "Standard — transparent pricing breakdown is expected for high-AOV purchases",
     ),
     card(
         "Payment trust icons (Visa, Mastercard, UPI, RuPay) near checkout reduce payment anxiety — Voltas cart has none",

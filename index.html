@@ -1775,7 +1775,7 @@
                         <div class="info-card">
                             <h4>What We Analyzed</h4>
                             <ul>
-                                <li><span>UX & Conversion Design</span><span>16 findings</span></li>
+                                <li><span>UX & Conversion Design</span><span>15 findings</span></li>
                                 <li><span>Performance & Speed</span><span>vs 4 competitors</span></li>
                                 <li><span>Technology & App Stack</span><span>Platform + 14 apps</span></li>
                                 <li><span>Industry Benchmarks</span><span>Electronics &amp; Home Appliances</span></li>
@@ -1786,7 +1786,7 @@
                             <ul>
                                 <li><span>Homepage</span><span>3 findings</span></li>
                                 <li><span>Collection Pages</span><span>4 findings</span></li>
-                                <li><span>Product Pages (PDP)</span><span>5 findings</span></li>
+                                <li><span>Product Pages (PDP)</span><span>4 findings</span></li>
                                 <li><span>Cart & Checkout</span><span>4 findings</span></li>
                             </ul>
                         </div>
@@ -2461,8 +2461,8 @@
                                                 <div class="finding-screenshot-label client-label">Proposed Implementation — Voltas PDP</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/bluestar_pdp_pincode_atc.jpeg" alt="Blue Star — Star Rating + Tonnage selectors + Pincode + ATC + Warranty badges">
-                                                <div class="finding-screenshot-label benchmark-label">Blue Star — Star Rating + Tonnage selectors + Pincode + ATC + Warranty badges</div>
+                                                <img src="screenshots/samsung_emi_atc.jpeg" alt="Samsung — EMI ₹2,664/mo prominently displayed + bold ATC + warranty info">
+                                                <div class="finding-screenshot-label benchmark-label">Samsung — EMI ₹2,664/mo prominently displayed + bold ATC + warranty info</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2497,8 +2497,8 @@
                                                 <div class="finding-screenshot-label client-label">Voltas — Low contrast ATC button</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/bluestar_pdp_top.jpeg" alt="Blue Star — Bold blue ATC button with clear visual hierarchy">
-                                                <div class="finding-screenshot-label benchmark-label">Blue Star — Bold blue ATC button with clear visual hierarchy</div>
+                                                <img src="screenshots/samsung_emi_atc.jpeg" alt="Samsung — Bold blue full-width ATC button with high contrast">
+                                                <div class="finding-screenshot-label benchmark-label">Samsung — Bold blue full-width ATC button with high contrast</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2522,42 +2522,6 @@
                                         </div>
                                     </div>
                                 </div>
-<div class="finding-card">
-                                    <div class="finding-card-header">
-                                        Pincode-gating the ATC button creates friction that can reduce add-to-cart rate by 20–30% — Voltas requires pincode before any cart action
-                                    </div>
-                                    <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="screenshots/pdp_pincode_client.jpeg" alt="Voltas">
-                                                <div class="finding-screenshot-label client-label">Voltas — ATC disabled until pincode check</div>
-                                            </div>
-                                            <div class="finding-screenshot">
-                                                <img src="screenshots/crompton_pdp_top.jpeg" alt="Crompton — Product info + Buy From Store CTA without pincode gate">
-                                                <div class="finding-screenshot-label benchmark-label">Crompton — Product info + Buy From Store CTA without pincode gate</div>
-                                            </div>
-                                        </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Voltas completely disables the Add to Cart button until the user enters a valid pincode — the button is greyed out with no click affordance until serviceability is confirmed</li>
-                                                    <li>This creates a 3-step flow: (1) find the pincode field, (2) type 6-digit pincode, (3) click Check, (4) if serviceable, ATC becomes active — vs competitors' 1-step CTA</li>
-                                                    <li>Crompton allows immediate access to the Buy From Store action without any pincode gate — product info, color swatches, and CTAs are all immediately accessible</li>
-                                                    <li>The friction is compounded by an exchange offer checkbox that appears after pincode validation — adding yet another decision point before the user can proceed to cart</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li>Make ATC always enabled — move pincode validation to the cart or checkout step where delivery address is naturally collected</li>
-                                                    <li>If serviceability check must stay on PDP, make it informational ("Check delivery to your area") rather than a gate that blocks the purchase flow entirely</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Critical — pincode-gating ATC is an anti-pattern; 9/10 competitors allow immediate ATC</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                             </div>
                         </div>
@@ -2576,8 +2540,8 @@
                                                 <div class="finding-screenshot-label client-label">Voltas — Cart drawer (no cross-sell)</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/havells_crosssell.jpeg" alt="Havells — "You may also like" cross-sell cards with ATC buttons">
-                                                <div class="finding-screenshot-label benchmark-label">Havells — "You may also like" cross-sell cards with ATC buttons</div>
+                                                <img src="screenshots/mockup_crosssell_voltas.jpeg" alt="Proposed Implementation — Voltas cart with "Complete Your Setup" cross-sell section">
+                                                <div class="finding-screenshot-label benchmark-label">Proposed Implementation — Voltas cart with "Complete Your Setup" cross-sell section</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2603,36 +2567,36 @@
                                 </div>
 <div class="finding-card">
                                     <div class="finding-card-header">
-                                        A free shipping threshold progress bar can increase AOV by 8–12% — Voltas cart has no shipping visibility
+                                        A transparent subtotal breakdown with GST, shipping, and installation fees builds purchase confidence for high-AOV products — Voltas cart shows no breakdown
                                     </div>
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/mockup_cart_delivery.jpeg" alt="Voltas">
-                                                <div class="finding-screenshot-label client-label">Proposed Implementation — Voltas Cart</div>
+                                                <img src="screenshots/cart_drawer_client.jpeg" alt="Voltas">
+                                                <div class="finding-screenshot-label client-label">Voltas — Cart shows only subtotal with no breakdown (taxes, shipping calculated at checkout)</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/bajaj_testimonials.jpeg" alt="Bajaj — Customer testimonials and trust-building content throughout purchase flow">
-                                                <div class="finding-screenshot-label benchmark-label">Bajaj — Customer testimonials and trust-building content throughout purchase flow</div>
+                                                <img src="screenshots/mockup_subtotal_breakdown.jpeg" alt="Proposed Implementation — Order summary with GST, free shipping, free installation clearly shown">
+                                                <div class="finding-screenshot-label benchmark-label">Proposed Implementation — Order summary with GST, free shipping, free installation clearly shown</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
                                             <div class="finding-observations">
                                                 <span class="finding-section-header observations-header">Observations</span>
                                                 <ul>
-                                                    <li>The Voltas cart drawer shows "Shipping, taxes, and discount codes calculated at checkout" — no shipping cost estimate, no free shipping threshold, no delivery timeline</li>
-                                                    <li>For ₹32,000+ appliance purchases, shipping cost uncertainty is less of an issue than delivery timeline uncertainty — when will it arrive? Is installation included?</li>
-                                                    <li>No free installation badge or delivery date is shown in the cart despite the PDP having a pincode checker with serviceability info — this context is lost in the transition to cart</li>
-                                                    <li>Competitors like Bajaj maintain confidence-building messaging throughout their purchase flow — Voltas drops all reassurance once the user reaches the cart</li>
+                                                    <li>The Voltas cart drawer shows only: subtotal and "Shipping, taxes, and discount codes calculated at checkout" — no breakdown of what the customer is actually paying</li>
+                                                    <li>For ₹30,000–75,000 appliance purchases, customers expect to see a clear order summary: product price, applicable discount, GST (28% on ACs), shipping cost, and installation cost</li>
+                                                    <li>Hiding the GST breakdown until checkout creates surprise and doubt — customers may abandon if the final amount differs from what they expected</li>
+                                                    <li>No confirmation of free shipping or free installation in the cart — both are key purchase motivators that should be visible at the point of commitment</li>
                                                 </ul>
                                             </div>
                                             <div class="finding-recommendations">
                                                 <span class="finding-section-header recommendations-header">Recommendations</span>
                                                 <ul>
-                                                    <li>Add a delivery timeline and free installation confirmation in the cart: "Free Installation Included · Estimated delivery: [date range]"</li>
-                                                    <li>If a free shipping threshold exists, add a progress bar — if all orders ship free, state it explicitly: "Free Shipping on All Orders"</li>
+                                                    <li>Add a full "Order Summary" section in the cart: Subtotal, Discount (if applicable), GST (28% — show the amount), Shipping (show FREE explicitly), Installation (show FREE explicitly), and Total</li>
+                                                    <li>Display trust badges below the checkout button: Secure Payment, Tata Guarantee, Easy Returns — reinforce confidence at the final decision point</li>
                                                 </ul>
-                                                <span class="finding-benchmark-tag">Growing — delivery timeline visibility in cart reduces abandonment for high-AOV items</span>
+                                                <span class="finding-benchmark-tag">Standard — transparent pricing breakdown is expected for high-AOV purchases</span>
                                             </div>
                                         </div>
                                     </div>
