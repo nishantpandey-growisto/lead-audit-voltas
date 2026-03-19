@@ -28,12 +28,12 @@ replacements = {
     "{{SEVERITY_CRITICAL_COUNT}}": "5",
     "{{SEVERITY_IMPORTANT_COUNT}}": "7",
     "{{SEVERITY_OPPORTUNITY_COUNT}}": "4",
-    "{{FINDING_COUNT_TOTAL}}": "15",
+    "{{FINDING_COUNT_TOTAL}}": "14",
     "{{COMPETITOR_COUNT}}": "4",
     "{{APPS_PRESENT_COUNT}}": "14",
     "{{FINDING_COUNT_HOMEPAGE}}": "3",
     "{{FINDING_COUNT_COLLECTION}}": "4",
-    "{{FINDING_COUNT_PDP}}": "4",
+    "{{FINDING_COUNT_PDP}}": "3",
     "{{FINDING_COUNT_CART}}": "4",
 
     # Section 02 — Traffic & Conversion Context
@@ -375,7 +375,7 @@ col_cards = "\n".join([
 ])
 
 # ═══════════════════════════════════════════════════════════
-# PDP (5 cards)
+# PDP (3 cards)
 # ═══════════════════════════════════════════════════════════
 pdp_cards = "\n".join([
     card(
@@ -425,22 +425,6 @@ pdp_cards = "\n".join([
             "Surface Simpl BNPL messaging on PDP: \"Pay in 3 interest-free installments of ₹10,667\" — place it directly below the offer price",
         ],
         "Standard — 4/5 India electronics stores show EMI/installment on PDP",
-    ),
-    card(
-        "Low-contrast CTA buttons reduce visibility and click-through — Voltas ATC button blends into the background",
-        "screenshots/pdp_pincode_client.jpeg", "Voltas — Low contrast ATC button",
-        "screenshots/samsung_atc_button.jpeg", "Samsung — Bold blue full-width ATC button with clear visual hierarchy",
-        [
-            "The Voltas ATC button uses a thin grey/white outline style that blends into the page background — it doesn't stand out as the primary action",
-            "When the pincode hasn't been entered, the ATC appears greyed out (disabled state) — this is correct behavior but the enabled state also lacks visual punch",
-            "Samsung uses a prominent blue filled ATC button that spans the full width — immediately visible and clearly the primary action on the page",
-            "On mobile, the ATC needs to be the most visually prominent element on the page — Voltas's current styling makes it easy to miss",
-        ],
-        [
-            "Restyle ATC as a filled, high-contrast button (Voltas blue #00529B or contrasting orange) with larger text — make it the most visually dominant element on mobile PDP",
-            "Consider adding a \"Buy Now\" button alongside ATC for one-click direct-to-checkout — the Impulse theme supports dual CTA configuration",
-        ],
-        "Growing — high-contrast dual CTAs are standard on 7/10 electronics PDPs",
     ),
 ])
 
