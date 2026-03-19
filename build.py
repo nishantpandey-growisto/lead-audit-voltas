@@ -413,11 +413,11 @@ pdp_cards = "\n".join([
     card(
         "An EMI/installment calculator on the PDP can increase conversion by 15–20% for high-AOV products — Voltas has no EMI display",
         "screenshots/mockup_emi_calc.jpeg", "Proposed Implementation — Voltas PDP",
-        "screenshots/samsung_emi_atc.jpeg", "Samsung — EMI ₹2,664/mo prominently displayed + bold ATC + warranty info",
+        "screenshots/samsung_emi_pdp.jpeg", "Samsung — \"From ₹2,664/mo\" EMI prominently displayed above bold ATC button",
         [
             "Voltas sells ACs priced ₹32,000–75,000 — yet the PDP shows no EMI/installment option, no BNPL messaging, and no affordability nudge",
             "Simpl (Pay Later) is detected in the tech stack but is not surfaced on the PDP — the payment flexibility message is invisible to the buyer during the product evaluation stage",
-            "Blue Star's PDP shows price with MRP strikethrough, Star Rating selector, Tonnage selector, Pincode checker, ATC button, and warranty badges (Lifetime Compressor + 5-Year PCB) — a comprehensive purchase decision interface",
+            "Samsung's PDP prominently displays \"From ₹2,664.23/mo\" above the full price with MRP strikethrough and savings — making a ₹55,490 AC feel like a ₹2,664/month commitment",
             "A simple \"Starting at ₹X/month\" message below the price can reduce perceived cost anxiety by 30–40%",
         ],
         [
@@ -429,11 +429,11 @@ pdp_cards = "\n".join([
     card(
         "Low-contrast CTA buttons reduce visibility and click-through — Voltas ATC button blends into the background",
         "screenshots/pdp_pincode_client.jpeg", "Voltas — Low contrast ATC button",
-        "screenshots/samsung_emi_atc.jpeg", "Samsung — Bold blue full-width ATC button with high contrast",
+        "screenshots/samsung_atc_button.jpeg", "Samsung — Bold blue full-width ATC button with clear visual hierarchy",
         [
             "The Voltas ATC button uses a thin grey/white outline style that blends into the page background — it doesn't stand out as the primary action",
             "When the pincode hasn't been entered, the ATC appears greyed out (disabled state) — this is correct behavior but the enabled state also lacks visual punch",
-            "Blue Star uses a prominent blue filled ATC button that spans the full width — immediately visible and clearly the primary action on the page",
+            "Samsung uses a prominent blue filled ATC button that spans the full width — immediately visible and clearly the primary action on the page",
             "On mobile, the ATC needs to be the most visually prominent element on the page — Voltas's current styling makes it easy to miss",
         ],
         [
