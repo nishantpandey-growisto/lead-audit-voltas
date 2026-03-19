@@ -28,12 +28,12 @@ replacements = {
     "{{SEVERITY_CRITICAL_COUNT}}": "5",
     "{{SEVERITY_IMPORTANT_COUNT}}": "7",
     "{{SEVERITY_OPPORTUNITY_COUNT}}": "4",
-    "{{FINDING_COUNT_TOTAL}}": "14",
+    "{{FINDING_COUNT_TOTAL}}": "15",
     "{{COMPETITOR_COUNT}}": "4",
     "{{APPS_PRESENT_COUNT}}": "14",
     "{{FINDING_COUNT_HOMEPAGE}}": "3",
     "{{FINDING_COUNT_COLLECTION}}": "4",
-    "{{FINDING_COUNT_PDP}}": "3",
+    "{{FINDING_COUNT_PDP}}": "4",
     "{{FINDING_COUNT_CART}}": "4",
 
     # Section 02 — Traffic & Conversion Context
@@ -375,7 +375,7 @@ col_cards = "\n".join([
 ])
 
 # ═══════════════════════════════════════════════════════════
-# PDP (3 cards)
+# PDP (4 cards)
 # ═══════════════════════════════════════════════════════════
 pdp_cards = "\n".join([
     card(
@@ -425,6 +425,23 @@ pdp_cards = "\n".join([
             "Surface Simpl BNPL messaging on PDP: \"Pay in 3 interest-free installments of ₹10,667\" — place it directly below the offer price",
         ],
         "Standard — 4/5 India electronics stores show EMI/installment on PDP",
+    ),
+    card(
+        "High-AOV PDPs need lead-gen touchpoints — most buyers research online but purchase offline or need expert guidance before committing ₹30K+",
+        "screenshots/pdp_pincode_client.jpeg", "Voltas — PDP has only ATC (no lead-gen, no store locator, no reserve option)",
+        "screenshots/mockup_lead_gen.jpeg", "Proposed Implementation — Reserve Product + Stock Alert + Nearby Store with Call CTA",
+        [
+            "At ₹30,000–75,000 price points, online add-to-cart rates are naturally low — many buyers want to see the product in person, discuss installation, or negotiate pricing before purchasing",
+            "The Voltas PDP offers only one conversion path: enter pincode → Add to Cart. Visitors who aren't ready to buy online have zero options to engage — they simply bounce",
+            "A \"Reserve This Product\" form captures high-intent leads: the buyer gets a callback from a Voltas expert to discuss installation, demo, and best pricing for their area — converting a bounce into a qualified lead",
+            "A \"Voltas Stores Near You\" section with distance, hours, and a Call CTA bridges online browsing to offline purchase — critical for an appliance brand with a pan-India dealer network that is not being leveraged on the website",
+        ],
+        [
+            "Add a \"Not Ready to Buy Online?\" lead-gen section on PDP: (1) Reserve This Product — mobile number capture for expert callback, (2) Price Drop &amp; Stock Alert — email capture for re-engagement",
+            "Add a \"Experience at a Store Near You\" section using Voltas's dealer network data — show nearest 2–3 stores with address, distance, hours, and a prominent Call CTA button",
+            "Both features capture contact details for CRM follow-up (Klaviyo is already installed) — turning anonymous PDP visitors into addressable leads even when they don't add to cart",
+        ],
+        "Growing — lead-gen on PDP is standard for high-AOV categories (Samsung, LG, Daikin all offer store locator + callback)",
     ),
 ])
 
