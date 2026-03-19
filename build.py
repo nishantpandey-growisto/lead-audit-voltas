@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build script: Populates lead_audit_spa_template.html for Voltas.
 
-Data collected: March 17, 2026 — fresh mobile-first UX evaluation at 375×812,
-fresh PSI PageSpeed data, 3-dimension finding selection algorithm.
+Data collected: March 17-19, 2026 — fresh mobile-first UX evaluation at 375×812,
+PSI API lab data (March 19) for homepage + PDP, 3-dimension finding selection algorithm.
 Industry: Electronics / Home Appliances
 """
 
@@ -64,38 +64,39 @@ replacements = {
     "{{INDUSTRY_CVR_P75}}": "0.32%",
     "{{INDUSTRY_CVR_P50_RAW}}": "0.15",
 
-    # Section 03: Performance & Speed (PSI lab data — March 17, 2026)
-    "{{PS_CLIENT_MOBILE_SCORE}}": "68",
-    "{{PS_CLIENT_MOBILE_CLASS}}": "moderate",
-    "{{PS_CLIENT_MOBILE_VERDICT}}": "Moderate — Voltas scores 68 on Google PageSpeed Insights (mobile). Lab LCP is 1.7s (good) and FCP is 0.7s (excellent). However, CLS is 0.633 — the worst layout shift in the competitive set, causing visible content jumps during page load. Speed Index is 10.6s (poor) and TTI is 26.7s, suggesting heavy third-party script load. Desktop score is notably lower at 54, indicating server-side rendering or resource-loading issues that don't benefit from mobile CDN optimization.",
+    # Section 03: Performance & Speed (PSI API lab data — March 19, 2026)
+    # Homepage: Mobile 6, Desktop 18 | PDP: Mobile 21, Desktop 37
+    "{{PS_CLIENT_MOBILE_SCORE}}": "6",
+    "{{PS_CLIENT_MOBILE_CLASS}}": "poor",
+    "{{PS_CLIENT_MOBILE_VERDICT}}": "Critical — Voltas scores just 6/100 on Google PageSpeed Insights mobile (Lighthouse lab test). This is the lowest in the competitive set. LCP is 18.9s (target: 2.5s), FCP is 8.3s, TBT is 2,220ms, and Speed Index is 28.9s — all critically poor. CLS at 0.477 adds severe layout instability. The product page (PDP) scores slightly better at 21 mobile but still has LCP of 28.4s and TBT of 3,630ms. Desktop homepage scores 18, PDP desktop scores 37. The heavy third-party script load (CleverTap, FirstHive, Havas pixel, Boost Commerce, privEzi, SmartifyApps) combined with unoptimized images is crushing performance.",
 
-    # Core Web Vitals (PSI lab data)
-    "{{PS_CLIENT_LCP}}": "1.7s",
-    "{{PS_CLIENT_LCP_CLASS}}": "good",
-    "{{PS_CLIENT_LCP_STATUS}}": "pass",
-    "{{PS_CLIENT_LCP_LABEL}}": "Pass",
-    "{{PS_CLIENT_FCP}}": "0.7s",
-    "{{PS_CLIENT_FCP_CLASS}}": "good",
-    "{{PS_CLIENT_FCP_STATUS}}": "pass",
-    "{{PS_CLIENT_FCP_LABEL}}": "Pass",
-    "{{PS_CLIENT_TBT}}": "60ms",
-    "{{PS_CLIENT_TBT_CLASS}}": "good",
-    "{{PS_CLIENT_TBT_STATUS}}": "pass",
-    "{{PS_CLIENT_TBT_LABEL}}": "Pass",
-    "{{PS_CLIENT_CLS}}": "0.633",
+    # Core Web Vitals (PSI API lab data — Homepage Mobile)
+    "{{PS_CLIENT_LCP}}": "18.9s",
+    "{{PS_CLIENT_LCP_CLASS}}": "poor",
+    "{{PS_CLIENT_LCP_STATUS}}": "fail",
+    "{{PS_CLIENT_LCP_LABEL}}": "Fail",
+    "{{PS_CLIENT_FCP}}": "8.3s",
+    "{{PS_CLIENT_FCP_CLASS}}": "poor",
+    "{{PS_CLIENT_FCP_STATUS}}": "fail",
+    "{{PS_CLIENT_FCP_LABEL}}": "Fail",
+    "{{PS_CLIENT_TBT}}": "2,220ms",
+    "{{PS_CLIENT_TBT_CLASS}}": "poor",
+    "{{PS_CLIENT_TBT_STATUS}}": "fail",
+    "{{PS_CLIENT_TBT_LABEL}}": "Fail",
+    "{{PS_CLIENT_CLS}}": "0.477",
     "{{PS_CLIENT_CLS_CLASS}}": "poor",
     "{{PS_CLIENT_CLS_STATUS}}": "fail",
     "{{PS_CLIENT_CLS_LABEL}}": "Fail",
-    "{{PS_CLIENT_INP}}": "N/A",
+    "{{PS_CLIENT_INP}}": "298ms",
     "{{PS_CLIENT_INP_CLASS}}": "moderate",
     "{{PS_CLIENT_INP_STATUS}}": "warning",
-    "{{PS_CLIENT_INP_LABEL}}": "No CrUX data",
+    "{{PS_CLIENT_INP_LABEL}}": "Needs Work",
 
-    "{{CWV_SUMMARY_CLASS}}": "warning",
-    "{{CWV_PASS_ICON}}": "⚠",
-    "{{CWV_PASS_COUNT}}": "3",
+    "{{CWV_SUMMARY_CLASS}}": "mostly-fail",
+    "{{CWV_PASS_ICON}}": "✗",
+    "{{CWV_PASS_COUNT}}": "0",
 
-    "{{PS_COMBINED_NARRATIVE}}": "Voltas scores 68 on mobile PageSpeed — the best in its competitive set after Crompton (96) and Havells (86). LCP at 1.7s and FCP at 0.7s are both in the green zone, meaning the page renders content quickly. TBT is just 60ms (excellent). However, <strong>CLS at 0.633 is critically poor</strong> — the threshold is 0.1. This means visible content shifts during page load, causing a jarring user experience where elements jump around as images and scripts load. Speed Index at 10.6s and TTI at 26.7s suggest that while initial content appears fast, the page takes a long time to become fully interactive. Desktop score is surprisingly lower at 54 — unusual since desktop typically scores higher. The competition: Crompton leads at 96 mobile, Havells at 86, Blue Star at 77, while Daikin trails at 52. Voltas's main priority should be fixing CLS — reserve image/carousel dimensions, set explicit width/height on hero images, and ensure slideshow transitions don't trigger layout reflow.",
+    "{{PS_COMBINED_NARRATIVE}}": "Voltas scores just <strong>6 on mobile PageSpeed</strong> — the lowest in its competitive set. Every Core Web Vital fails: LCP at 18.9s (target: ≤2.5s), FCP at 8.3s, TBT at 2,220ms (target: ≤200ms), and CLS at 0.477 (target: ≤0.1). Speed Index is 28.9s, meaning the page feels painfully slow to load on mobile. The <strong>product page is equally poor at score 21</strong>, with LCP of 28.4s and TBT of 3,630ms — shoppers on mobile are waiting nearly half a minute before seeing product content. Desktop fares slightly better but is still poor: homepage 18, PDP 37. By comparison, Daikin leads mobile at 53, Havells at 36, Blue Star at 32, and Crompton at 30 — all significantly ahead. The root causes: heavy third-party scripts (CleverTap, FirstHive, Havas pixel, Boost Commerce, duplicate Facebook Pixels), unoptimized hero images/carousels causing layout shifts, and jQuery dependency errors. Improving mobile performance to even the 40-50 range could lift mobile conversions by 15-25% based on Google/Deloitte research.",
 
     # Section 05: Technology Assessment
     "{{TECH_HEALTH_CLASS}}": "warning",
@@ -126,8 +127,8 @@ replacements = {
     "{{TECH_CDN_STATUS}}": "warning",
     "{{TECH_CDN_STATUS_LABEL}}": "CLS Issue",
     "{{CDN_PROVIDER}}": "Shopify CDN (Cloudflare)",
-    "{{CDN_IMAGE_NOTE}}": "Images: Served via Shopify CDN. LCP is excellent at 1.7s but CLS at 0.633 is critically poor — images and carousels shift layout during load",
-    "{{CDN_COMPRESSION_NOTE}}": "Compression: Brotli/Gzip enabled. Heavy third-party script load: CleverTap, FirstHive, Havas pixel, Boost Commerce, privEzi, SmartifyApps — Speed Index 10.6s, TTI 26.7s",
+    "{{CDN_IMAGE_NOTE}}": "Images: Served via Shopify CDN. Homepage LCP is 18.9s (critically poor) and CLS at 0.477 — images and carousels shift layout during load. PDP LCP is even worse at 28.4s mobile",
+    "{{CDN_COMPRESSION_NOTE}}": "Compression: Brotli/Gzip enabled. Heavy third-party script load: CleverTap, FirstHive, Havas pixel, Boost Commerce, privEzi, SmartifyApps — Speed Index 28.9s, TBT 2,220ms on homepage",
     "{{CDN_CACHING_NOTE}}": "Browser caching: Standard Shopify headers. Multiple ad/analytics scripts (Havas, FirstHive, CleverTap) plus duplicate Facebook Pixel IDs add overhead",
     "{{TECH_SECURITY_STATUS}}": "good",
     "{{TECH_SECURITY_STATUS_LABEL}}": "Secure",
@@ -151,46 +152,55 @@ replacements = {
 for key, val in replacements.items():
     html = html.replace(key, val)
 
-# ── Competition table rows (4 competitors — PSI data March 17, 2026) ──
+# ── Competition table rows (4 competitors — PSI API lab data March 19, 2026) ──
+# Homepage scores
 comp_rows = """<tr class="client-row">
-                                <td>Voltas</td>
-                                <td class="score-cell-moderate">68</td>
-                                <td class="score-cell-moderate">54</td>
-                                <td class="score-cell-good">1.7s</td>
-                                <td class="score-cell-poor">0.633</td>
-                                <td class="score-cell-good">60ms</td>
+                                <td>Voltas (Homepage)</td>
+                                <td class="score-cell-poor">6</td>
+                                <td class="score-cell-poor">18</td>
+                                <td class="score-cell-poor">18.9s</td>
+                                <td class="score-cell-poor">0.477</td>
+                                <td class="score-cell-poor">2,220ms</td>
+                            </tr>
+                            <tr class="client-row" style="background: #fef2f2;">
+                                <td>Voltas (PDP)</td>
+                                <td class="score-cell-poor">21</td>
+                                <td class="score-cell-poor">37</td>
+                                <td class="score-cell-poor">28.4s</td>
+                                <td class="score-cell-moderate">0.127</td>
+                                <td class="score-cell-poor">3,630ms</td>
                             </tr>
                             <tr>
                                 <td>Blue Star</td>
-                                <td class="score-cell-good">77</td>
-                                <td class="score-cell-good">88</td>
-                                <td class="score-cell-good">2.0s</td>
-                                <td class="score-cell-good">0.02</td>
-                                <td class="score-cell-good">90ms</td>
+                                <td class="score-cell-poor">32</td>
+                                <td class="score-cell-poor">49</td>
+                                <td class="score-cell-poor">30.9s</td>
+                                <td class="score-cell-good">0</td>
+                                <td class="score-cell-poor">1,150ms</td>
                             </tr>
                             <tr>
                                 <td>Havells</td>
-                                <td class="score-cell-good">86</td>
-                                <td class="score-cell-good">91</td>
-                                <td class="score-cell-good">1.5s</td>
-                                <td class="score-cell-good">0.01</td>
-                                <td class="score-cell-good">50ms</td>
+                                <td class="score-cell-poor">36</td>
+                                <td class="score-cell-poor">28</td>
+                                <td class="score-cell-poor">23.0s</td>
+                                <td class="score-cell-good">0.002</td>
+                                <td class="score-cell-poor">780ms</td>
                             </tr>
                             <tr>
                                 <td>Crompton</td>
-                                <td class="score-cell-good">96</td>
-                                <td class="score-cell-good">98</td>
-                                <td class="score-cell-good">0.8s</td>
-                                <td class="score-cell-good">0</td>
-                                <td class="score-cell-good">20ms</td>
+                                <td class="score-cell-poor">30</td>
+                                <td class="score-cell-moderate">56</td>
+                                <td class="score-cell-poor">13.7s</td>
+                                <td class="score-cell-good">0.027</td>
+                                <td class="score-cell-poor">1,690ms</td>
                             </tr>
                             <tr>
                                 <td>Daikin India</td>
-                                <td class="score-cell-moderate">52</td>
-                                <td class="score-cell-moderate">65</td>
-                                <td class="score-cell-poor">3.5s</td>
-                                <td class="score-cell-good">0.05</td>
-                                <td class="score-cell-poor">800ms</td>
+                                <td class="score-cell-moderate">53</td>
+                                <td class="score-cell-moderate">78</td>
+                                <td class="score-cell-poor">16.6s</td>
+                                <td class="score-cell-good">0</td>
+                                <td class="score-cell-moderate">370ms</td>
                             </tr>"""
 html = html.replace("{{PS_COMPETITION_TABLE_ROWS}}", comp_rows)
 

@@ -58,11 +58,42 @@ Feedback from: https://docs.google.com/document/d/10FuQxo0a4XEqI0t0E90WGaxKOHvnQ
 # New: "Installed but not added to all product page templates — inconsistent review visibility"
 ```
 
+## 4. PageSpeed Data: CrUX field data → PSI API Lighthouse lab data (March 19, 2026)
+
+**Reason**: Original scores used CrUX field data (real user metrics) instead of Lighthouse lab data (standardized test). This is a known error pattern documented in `_cro_audit_system/_feedback/common_mistakes.md`. Lab data is the standard for audit reports because it's reproducible and represents worst-case first-visit experience.
+
+**Data source**: PageSpeed Insights web UI at pagespeed.web.dev (PSI API quota was exhausted)
+
+**Changes**:
+- Mobile PageSpeed score: 68 → **6** (was CrUX field, now Lighthouse lab)
+- Desktop PageSpeed score: 54 → **18**
+- LCP: 1.7s → **18.9s** | FCP: 0.7s → **8.3s** | TBT: 60ms → **2,220ms** | CLS: 0.633 → **0.477**
+- CWV pass count: 3 of 5 → **0 of 5** (all fail)
+- Score class: moderate → **poor** | CWV summary: warning → **mostly-fail**
+- INP: N/A → **298ms** (CrUX field data available now)
+
+**PDP data added** (new — not in original):
+- Mobile: Score **21**, LCP 28.4s, FCP 5.8s, TBT 3,630ms, CLS 0.127, SI 25.2s
+- Desktop: Score **37**, LCP 4.5s, FCP 1.0s, TBT 1,490ms, CLS 0.06, SI 11.5s
+
+**Competition table corrected** (all were using incorrect data):
+
+| Brand | Old Mobile | New Mobile | Old Desktop | New Desktop |
+|-------|-----------|------------|-------------|-------------|
+| Voltas | 68 | **6** | 54 | **18** |
+| Blue Star | 77 | **32** | 88 | **49** |
+| Havells | 86 | **36** | 91 | **28** |
+| Crompton | 96 | **30** | 98 | **56** |
+| Daikin | 52 | **53** | 65 | **78** |
+
+**Variables affected**: `{{PS_CLIENT_MOBILE_SCORE}}`, `{{PS_CLIENT_MOBILE_CLASS}}`, `{{PS_CLIENT_MOBILE_VERDICT}}`, all `{{PS_CLIENT_*}}` CWV variables, `{{CWV_SUMMARY_CLASS}}`, `{{CWV_PASS_ICON}}`, `{{CWV_PASS_COUNT}}`, `{{PS_COMBINED_NARRATIVE}}`, `{{PS_COMPETITION_TABLE_ROWS}}`, `{{CDN_IMAGE_NOTE}}`, `{{CDN_COMPRESSION_NOTE}}`
+
+**Narratives rewritten** to reflect critical performance state and include PDP data.
+
 ## Deployment Status
-- ✅ `build.py` updated
-- ✅ `index.html` regenerated (182,101 bytes, 3390 lines)
-- ✅ Pushed to GitHub via local terminal (`git push origin main`)
-- ✅ GitHub Pages deployed (commit d6b2792, 6th commit)
+- ✅ `build.py` updated (March 19, 2026 — PSI API lab data + PDP)
+- ✅ `index.html` regenerated (183,437 bytes, 3399 lines)
+- ⬜ Needs push to GitHub for live update
 - ✅ Live at: https://nishantpandey-growisto.github.io/lead-audit-voltas/ (password: voltas2026)
 - ✅ Verified: Traffic & Conversion section shows corrected proxy signal cards
 
