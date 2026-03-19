@@ -396,16 +396,16 @@ pdp_cards = "\n".join([
     ),
     card(
         "Visual spec icons help buyers evaluate products 40% faster than plain text — Voltas specs are a plain bullet list",
-        "screenshots/pdp_specs_client.jpeg", "Voltas — Plain text spec bullets",
-        "screenshots/havells_pdp_features.jpeg", "Havells — Structured Key Features with price, dual ATC/Buy Now CTAs",
+        "screenshots/pdp_specs_client.jpeg", "Voltas — Plain text spec bullets (20+ items, no hierarchy)",
+        "screenshots/mockup_spec_icons.jpeg", "Proposed Implementation — Voltas PDP with icon-based Key Specifications grid",
         [
             "Voltas product specs are presented as a plain unformatted bullet list: 20+ items including model number, tonnage, star rating, technical features, and manufacturer details — all in the same visual hierarchy",
             "Critical purchase-decision specs (tonnage, star rating, cooling capacity) are mixed with secondary technical details (PCB box material, hydrophilic coating) — buyers can't quickly find what matters",
             "No icon-based spec display, no tabbed organization (Specs / Description / Reviews), no comparison-friendly structured data",
-            "Havells uses a \"Key Features\" heading with curated features, prominent pricing with MRP strikethrough, and dual CTA buttons (Add to Cart + Buy Now) — clear hierarchy guides the buyer's eye",
+            "A 6-icon \"Key Specifications\" grid (Capacity, BEE Rating, Technology, Noise Level, Compressor Warranty, Room Size) would let buyers evaluate the product at a glance — without scrolling through 20+ bullet points",
         ],
         [
-            "Create a visual \"Key Specs\" section with 4–6 icon-based cards above the detailed specs: Tonnage, Star Rating, Cooling Capacity, Special Feature, Warranty, Noise Level",
+            "Create a visual \"Key Specs\" section with 6 icon-based cards above the detailed specs: Tonnage, Star Rating, Technology, Noise Level, Compressor Warranty, Room Size",
             "Organize remaining specs into collapsible tabs: \"Technical Specifications\", \"Description\", \"Reviews\" — the Impulse theme supports tabbed layouts natively",
         ],
         "Standard — 9/10 top electronics stores use visual spec icons on PDPs",
