@@ -90,12 +90,45 @@ Feedback from: https://docs.google.com/document/d/10FuQxo0a4XEqI0t0E90WGaxKOHvnQ
 
 **Narratives rewritten** to reflect critical performance state and include PDP data.
 
+## 5. UX Finding Cards — Rounds 3–5 (March 19, 2026)
+
+### Round 3: Screenshot accuracy fixes
+| Card | Issue | Fix |
+|------|-------|-----|
+| EMI calculator (PDP) | Blue Star screenshot showed Star Rating + Tonnage selectors, not EMI | Replaced with Samsung PDP screenshot showing "From ₹2,664/mo" prominently |
+| CTA button (PDP) | Samsung screenshot didn't clearly show the ATC button | Replaced with cropped Samsung screenshot focused on bold blue ATC |
+| Pincode-gating (PDP) | Common practice in appliance category — not a valid finding | Removed (was already absent) |
+| Cross-sell (Cart) | "Havells screenshot not matching" | Already correct — uses Voltas mockup. Havells ref only in observation text |
+| Shipping bar (Cart) | Not relevant for high-AOV (₹30K+) where shipping is automatic | Removed (was already absent) |
+| Subtotal breakdown (Cart) | Should exist as a new card | Already exists with mockup |
+
+### Round 4: Conditional button state + documentation
+| Card | Issue | Fix |
+|------|-------|-----|
+| Low-contrast CTA (PDP) | Greyed-out ATC is intentional — turns blue after pincode entry | **Removed entire card**. Added to `common_mistakes.md`: always test buttons in enabled state before flagging contrast |
+
+### Round 5: Mockup-first approach + new findings
+| Card | Issue | Fix |
+|------|-------|-----|
+| Visual spec icons (PDP) | Havells also uses plain text features — not a valid benchmark | **Replaced with client-branded mockup** showing 6-icon Key Specifications grid |
+| Lead-gen touchpoints (PDP) | **New finding**: high-AOV PDPs need lead capture beyond ATC | **Added new card** with mockup: Reserve Product + Stock Alert + Store Locator with Call CTA |
+
+### Documentation updates (Round 5)
+- `common_mistakes.md`: Updated mockup rule from "use when no competitor has feature" → **"PREFER mockups for ALL feature enhancement recommendations"** (pattern #20)
+- `best_practices.md`: Added lead-gen card as exemplary pattern + mockup creation workflow
+- `FINDING_CARD_FORMAT.md`: Added Section 2.2 "Benchmark Image: Mockup vs Competitor Screenshot" decision matrix
+- `LEAD_AUDIT_PROCESS.md`: Updated Step 7f content guidelines with mockup-first approach
+
+## Final Report State (March 19, 2026)
+- **15 findings**: 3 Homepage + 4 Collection + 4 PDP + 4 Cart
+- **7 mockups**: EMI calculator, spec icons, lead-gen (reserve + store locator), quick-add, cross-sell, subtotal breakdown, payment trust
+- **5 competitor screenshots**: Crompton (trust icons), Blue Star (product cards, collection), Daikin (product cards, filters), Samsung (EMI PDP), Bajaj (social proof), Havells (PDP installation, cross-sell cards), Atomberg (cart)
+
 ## Deployment Status
-- ✅ `build.py` updated (March 19, 2026 — PSI API lab data + PDP)
-- ✅ `index.html` regenerated (183,437 bytes, 3399 lines)
-- ⬜ Needs push to GitHub for live update
+- ✅ `build.py` updated through 5 feedback rounds (March 19, 2026)
+- ✅ `index.html` regenerated (180,554 bytes, 3364 lines)
 - ✅ Live at: https://nishantpandey-growisto.github.io/lead-audit-voltas/ (password: voltas2026)
-- ✅ Verified: Traffic & Conversion section shows corrected proxy signal cards
+- ✅ All feedback incorporated and deployed
 
 ## To Regenerate index.html
 ```bash
